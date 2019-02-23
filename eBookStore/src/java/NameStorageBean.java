@@ -40,7 +40,7 @@
  * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
 
-package helloworld;
+
 
 import javax.ejb.Singleton;
 
