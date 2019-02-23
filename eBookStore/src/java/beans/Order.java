@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @XmlRootElement
@@ -41,6 +42,7 @@ public class Order implements Serializable
         return orderId;
     }
 
+    @XmlTransient
     public ArrayList<Book> getBooks() 
     {
         return books;
