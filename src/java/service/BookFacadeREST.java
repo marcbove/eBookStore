@@ -31,61 +31,100 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     @PersistenceContext(unitName = "eBookStorePU")
     private EntityManager em;
 
-    public BookFacadeREST() {
+    public BookFacadeREST()
+    {
         super(Book.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Book entity) {
+    public Response create(Book entity)
+    {
         super.create(entity);
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Book entity) {
+    public Response edit(@PathParam("id") Integer id, Book entity)
+    {
+        if (super.find(id) == null)
+        {
+            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");
+        }
         super.edit(entity);
+        return Response.status(Response.Status.OK).build();
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
+    public Response remove(@PathParam("id") Integer id)
+    {
+        if(super.find(id) == null)
+        {
+          return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");
+        }
         super.remove(super.find(id));
+        return Response.status(Response.Status.OK).build();
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Book find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public Book find(@PathParam("id") Integer id)
+    {
+        Book book = super.find(id);
+        if (book == null)
+        {
+            return Response.status(Response.Status.NOT_FOUND)..entity("El llibre amb identificador: " + id + " no s'ha trobat");;
+        }
+        return Response.status(Response.Status.OK).entity(book).build();
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Book> findAll() {
-        return super.findAll();
+    public Response findAll(@QueryParam("criterion") String criterion)
+    {
+        ArrayList<Book> bookList = new ArrayList<Book>();
+        bookList = super.findAll();
+        ArrayList<Book> bookList_Ordered = new ArrayList<Book>();
+
+        switch (criterion)
+        {
+            case "price":
+                bookList_Ordered = bookList.stream().sorted(book_A, book_B)->new Float(book_A.getPrice()).compareTo(book_B.getPrice())).collect(Collectors.toList());
+                break;
+            case "rating":
+                bookList_Ordered = bookList.stream().sorted(book_A, book_B)->new Integer(book_A.getRating()).compareTo(book_B.getRating())).collect(Collectors.toList());
+                break;
+        }
+        GenericEntity<List<Book>> generic = new GenericEntity<List<Book>>(bookList_Ordered){};
+        return Response.status(Response.Status.OK).entity(generic).build();
     }
 
+    /*
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Book> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
-    }
-
+    }*/
+    /*
     @GET
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
+    public String countREST()
+    {
         return String.valueOf(super.count());
-    }
+    }*/
 
     @Override
-    protected EntityManager getEntityManager() {
+    protected EntityManager getEntityManager()
+    {
         return em;
     }
-    
+
 }

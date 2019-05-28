@@ -22,18 +22,18 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId"),
     @NamedQuery(name = "Book.findByName", query = "SELECT b FROM Book b WHERE b.name = :name"),
     //@NamedQuery(name = "Book.orderByPrice", query="SELECT b FROM Book b ORDER BY b.price DESC"),
-    //@NamedQuery(name = "Book.orderByRate", query="SELECT b FROM Book b ORDER BY b.valuation DESC")
+    //@NamedQuery(name = "Book.orderByRate", query="SELECT b FROM Book b ORDER BY b.rating DESC")
 })
-public class Book implements Serializable 
+public class Book implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Column(name = "BOOK_ID")
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer bookId;
-    
-    @Column(name = "VALUATION")
-    private int valuation;
+
+    @Column(name = "RATING")
+    private int rating;
     @Column(name = "NAME")
     private String name;
     @Column(name = "STOCK")
@@ -53,112 +53,112 @@ public class Book implements Serializable
     )
     private List<Author> authors;*/
     @Column(name = "AUTHOR")
-    private Author author;
+    private String author;
     @ManyToMany(mappedBy = "books")
     private ArrayList<Order> orders;
-  
-    public Book() 
+
+    public Book()
     {
     }
 
-    public Book(Integer bookId) 
+    public Book(Integer bookId)
     {
         this.bookId = bookId;
     }
 
-    public Integer getBookId() 
+    public Integer getBookId()
     {
         return bookId;
     }
 
-    public void setBookId(Integer bookId) 
+    public void setBookId(Integer bookId)
     {
         this.bookId = bookId;
     }
 
-    public int getValuation() 
+    public int getRating()
     {
-        return valuation;
+        return rating;
     }
 
-    public void setValuation(int valuation) 
+    public void setRating(int rating)
     {
-        this.valuation = valuation;
+        this.rating = rating;
     }
 
-    public String getName() 
+    public String getName()
     {
         return name;
     }
 
-    public void setName(String name) 
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    public int getStock() 
+    public int getStock()
     {
         return stock;
     }
 
-    public void setStock(int stock) 
+    public void setStock(int stock)
     {
         this.stock = stock;
     }
 
-    public float getPrice() 
+    public float getPrice()
     {
         return price;
     }
 
-    public void setPrice(float price) 
+    public void setPrice(float price)
     {
         this.price = price;
     }
 
-    public String getDescription() 
+    public String getDescription()
     {
         return description;
     }
 
-    public void setDescription(String description) 
+    public void setDescription(String description)
     {
         this.description = description;
     }
 
-    public String getCover() 
+    public String getCover()
     {
         return cover;
     }
 
-    public void setCover(String cover) 
+    public void setCover(String cover)
     {
         this.cover = cover;
     }
 
-    public Author getAuthor() 
+    public Author getAuthor()
     {
         return author;
     }
 
-    public void setAuthor(Author author) 
+    public void setAuthor(Author author)
     {
         this.author = author;
     }
 
     @XmlTransient
-    public ArrayList<Order> getOrders() 
+    public ArrayList<Order> getOrders()
     {
         return orders;
     }
 
-    public void setOrders(ArrayList<Order> orders) 
+    public void setOrders(ArrayList<Order> orders)
     {
         this.orders = orders;
     }
-    
+
     @Override
-    public int hashCode() 
+    public int hashCode()
     {
         int hash = 0;
         hash += (bookId != null ? bookId.hashCode() : 0);
@@ -166,14 +166,14 @@ public class Book implements Serializable
     }
 
     @Override
-    public boolean equals(Object object) 
+    public boolean equals(Object object)
     {
-        if (!(object instanceof Book)) 
+        if (!(object instanceof Book))
         {
             return false;
         }
         Book other = (Book) object;
-        if ((this.bookId == null && other.bookId != null) || (this.bookId != null && !this.bookId.equals(other.bookId))) 
+        if ((this.bookId == null && other.bookId != null) || (this.bookId != null && !this.bookId.equals(other.bookId)))
         {
             return false;
         }
@@ -181,9 +181,8 @@ public class Book implements Serializable
     }
 
     @Override
-    public String toString() 
+    public String toString()
     {
         return "[ bookId=" + bookId + " ]";
     }
 }
-
