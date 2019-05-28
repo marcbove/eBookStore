@@ -21,14 +21,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name"),
     @NamedQuery(name = "Customer.findByPhone", query = "SELECT c FROM Customer c WHERE c.phone = :phone"),
     @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email")})
-public class Customer implements Serializable 
+public class Customer implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Column(name = "CUSTOMER_ID")
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer customerId;
-    
+
     @OneToMany(mappedBy = "customer")
     private LinkedList<Order> orders;
     @Column(name = "NAME")
@@ -39,59 +39,59 @@ public class Customer implements Serializable
     @Column(name = "EMAIL")
     private String email;
 
-    public Customer() 
+    public Customer()
     {
         this.orders = new LinkedList<Order>();
     }
 
-    public Customer(Integer customerId) 
+    public Customer(Integer customerId)
     {
         this.customerId = customerId;
         this.orders = new LinkedList<Order>();
     }
 
-    public Integer getCustomerId() 
+    public Integer getCustomerId()
     {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) 
+    public void setCustomerId(Integer customerId)
     {
         this.customerId = customerId;
     }
 
-    public String getName() 
+    public String getName()
     {
         return name;
     }
 
-    public void setName(String name) 
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    public int getPhone() 
+    public int getPhone()
     {
         return phone;
     }
 
-    public void setPhone(int phone) 
+    public void setPhone(int phone)
     {
         this.phone = phone;
     }
 
-    public String getEmail() 
+    public String getEmail()
     {
         return email;
     }
 
-    public void setEmail(String email) 
+    public void setEmail(String email)
     {
         this.email = email;
     }
 
     @Override
-    public int hashCode() 
+    public int hashCode()
     {
         int hash = 0;
         hash += (customerId != null ? customerId.hashCode() : 0);
@@ -99,7 +99,7 @@ public class Customer implements Serializable
     }
 
     @Override
-    public boolean equals(Object object) 
+    public boolean equals(Object object)
     {
         if (!(object instanceof Customer)) {
             return false;
@@ -110,9 +110,9 @@ public class Customer implements Serializable
         }
         return true;
     }
-    
+
     @Override
-    public String toString() 
+    public String toString()
     {
         return "[ customerId = " + customerId + " ]";
     }

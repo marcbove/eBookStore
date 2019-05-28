@@ -78,7 +78,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
         Book book = super.find(id);
         if (book == null)
         {
-            return Response.status(Response.Status.NOT_FOUND)..entity("El llibre amb identificador: " + id + " no s'ha trobat");;
+            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");;
         }
         return Response.status(Response.Status.OK).entity(book).build();
     }

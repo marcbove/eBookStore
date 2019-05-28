@@ -16,51 +16,50 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @XmlRootElement
-public class Order implements Serializable 
+public class Order implements Serializable
 {
     @Column(name = "ORDER_ID")
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
-    private int orderId;
-    
+    private Integer orderId;
+
     @JoinColumn(name = "BOOKS") @ManyToMany(cascade=CascadeType.PERSIST)
     private ArrayList<Book> books;
     @JoinColumn(name = "CUSTOMER") @ManyToOne(cascade=CascadeType.PERSIST)
     private Customer customer;
-    
+
     public Order()
     {
-        
+
     }
-    
-    public Order(int orderId)
+
+    public Order(Integer orderId)
     {
         this.orderId = orderId;
     }
-    
-    public int getId()
+
+    public Integer getId()
     {
         return orderId;
     }
 
     @XmlTransient
-    public ArrayList<Book> getBooks() 
+    public ArrayList<Book> getBooks()
     {
         return books;
     }
 
-    public void setBooks(ArrayList<Book> books) 
+    public void setBooks(ArrayList<Book> books)
     {
         this.books = books;
     }
 
-    public Customer getCustomer() 
+    public Customer getCustomer()
     {
         return customer;
     }
 
-    public void setCustomer(Customer customer) 
+    public void setCustomer(Customer customer)
     {
         this.customer = customer;
     }
 }
-

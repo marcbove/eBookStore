@@ -26,12 +26,13 @@ import javax.ws.rs.core.MediaType;
  */
 @Stateless
 @Path("beans.customer")
-public class CustomerFacadeREST extends AbstractFacade<Customer> {
-
+public class CustomerFacadeREST extends AbstractFacade<Customer>
+{
     @PersistenceContext(unitName = "eBookStorePU")
     private EntityManager em;
 
-    public CustomerFacadeREST() {
+    public CustomerFacadeREST()
+    {
         super(Customer.class);
     }
 
@@ -40,52 +41,73 @@ public class CustomerFacadeREST extends AbstractFacade<Customer> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Customer entity) {
         super.create(entity);
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Customer entity) {
-        super.edit(entity);
+    public void edit(@PathParam("id") Integer id, Customer entity)
+    {
+        if(super.find(id) != null)
+        {
+            super.edit(entity);
+            return Response.status(Response.Status.OK).entity(entity).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).entity("El client amb id: " + id + " no s'ha trobat.").build();
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
+    public void remove(@PathParam("id") Integer id)
+    {
+        if(super.find(id) != null)
+        {
+            super.remove(super.find(id));
+            return Response.status(Response.Status.OK).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).entity("El client amb id: " + id + " no s'ha trobat.").build();
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Customer find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public Response find(@PathParam("id") Integer id)
+    {
+        if(super.find(id) != null)
+        {
+          super.remove(super.find(id));
+          return Response.status(Response.Status.OK)).build();
+        }
+      return Response.status(Response.Status.NOT_FOUND).entity("El client amb id: " + id + " no s'ha trobat.").build();
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Customer> findAll() {
+    public List<Customer> findAll()
+    {
         return super.findAll();
+        return Response.status(Response.status.NOT_FOUND).entity("No s'ha trobat cap client.").build();
     }
-
+    /*
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Customer> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
-    }
-
+    }*/
+    /*
     @GET
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)
     public String countREST() {
         return String.valueOf(super.count());
-    }
+    }*/
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }
