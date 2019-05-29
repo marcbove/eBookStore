@@ -1,57 +1,129 @@
-<%--
- DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-
- Copyright 1997-2010 Oracle and/or its affiliates. All rights reserved.
-
- Oracle and Java are registered trademarks of Oracle and/or its affiliates.
- Other names may be trademarks of their respective owners.
-
- The contents of this file are subject to the terms of either the GNU
- General Public License Version 2 only ("GPL") or the Common
- Development and Distribution License("CDDL") (collectively, the
- "License"). You may not use this file except in compliance with the
- License. You can obtain a copy of the License at
- http://www.netbeans.org/cddl-gplv2.html
- or nbbuild/licenses/CDDL-GPL-2-CP. See the License for the
- specific language governing permissions and limitations under the
- License.  When distributing the software, include this License Header
- Notice in each file and include the License file at
- nbbuild/licenses/CDDL-GPL-2-CP.  Oracle designates this
- particular file as subject to the "Classpath" exception as provided
- by Oracle in the GPL Version 2 section of the License file that
- accompanied this code. If applicable, add the following below the
- License Header, with the fields enclosed by brackets [] replaced by
- your own identifying information:
- "Portions Copyrighted [year] [name of copyright owner]"
- 
- Contributor(s):
- 
- The Original Software is NetBeans. The Initial Developer of the Original
- Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
- Microsystems, Inc. All Rights Reserved.
- 
- If you wish your version of this file to be governed by only the CDDL
- or only the GPL Version 2, indicate your decision by adding
- "[Contributor] elects to include this software in this distribution
- under the [CDDL or GPL Version 2] license." If you do not indicate a
- single choice of license, a recipient has the option to distribute
- your version of this file under either the CDDL, the GPL Version 2 or
- to extend the choice of license to its licensees as provided above.
- However, if you add GPL Version 2 code and therefore, elected the GPL
- Version 2 license, then the option applies only if the new code is
- made subject to such option by the copyright holder.
+<%-- 
+    Document   : index
+    Created on : 25-ene-2019, 12:38:27
+    Author     : danie
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        
+        <title>Practica Sob</title>
     </head>
-    <body>
+    <body style="overflow:auto;  margin: 0; padding: 0; height: 100%; width: 100%;">
+        
+        <%
+            HttpSession sesion = request.getSession();
+            String user = (String) sesion.getAttribute("username");
+            Boolean sis = user == null;
+            pageContext.setAttribute("sis", sis);
+        %>
+   
+      
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="index.jsp">Practica SOB</a>
+                      </div>
+                        <form class="navbar-form" action="search.do">
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Buscar Libro" name="search">
+                              <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                  Buscar
+                                </button>
+                              </div>
+                            </div>
+                        </form>
+                        <c:if test = "${sis}">
+                          <ul class="nav navbar-nav navbar-right">
+                              <li class="nav-item active"><a href="login.jsp">Login</a></li>
+                               / 
+                              <li class="nav-item active"><a href="register.jsp">Register</a></li>
+                              
+                          </ul>
+                        </c:if>
+                        <c:if test = "${!sis}">
+                          <ul class="nav navbar-nav navbar-right">
+                              <li class="nav-item active"><a href="carrito.jsp">Carrito de ${username}</a></li>
+                          </ul>
+                        </c:if>
+                    </div>
+                </nav>
+            </header>
+        
+
+            <div class="container" style="margin-top: 2%">
+                <center><h1>LIBROS</h1></center>
+                <form action="sort.do" method="get">
+                    <div class="form-group">
+                        <input type="text" name="page" value="index" hidden="">
+                        <label for="Seleccion_orden">Ordenar por:</label>
+                        <select class="form-control" id="opcion_ordenar" name="sort">
+                            <option value="price">Precio</option>
+                            <option value="assessment">Valoración</option>
+                        </select>
+                        <div class="input-group-btn">
+                          <button type="submit" class="btn btn-default">Ordenar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        
+              <div class="container">
+                
+                <c:forEach var="book" items="${books.books}">
+                    <section>
+                        <div class="container py-3">
+                          <div class="card">
+                            <div class="row " style="margin: 1%">
+                                <div class="col-md-4">
+                                  <img src="${book.img}" class="w-100">
+                                </div>
+                                <div class="col-md-8 px-3">
+                                  <div class="card-block px-3">
+                                    <h4 class="card-title">${book.title}</h4>
+                                    <p class="card-text"><strong>Autores:</strong></p>
+                                    <p class="card-text">${book.author}</p>
+                                    <p class="card-text"><strong>Descripcion:</strong></p>
+                                    <p class="card-text">${book.description}</p>
+                                    <p class="card-text"><strong>Precio:</strong></p>
+                                    <p class="card-text">${book.price} €</p>
+                                    <div class="ec-stars-wrapper">
+                                        <c:forEach var="i" begin = "1" end = "${book.assessment}">
+                                            <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                                        </c:forEach>
+                                    </div>
+                                    <form action="book.do" method="post">
+                                        <input type="text" name="id" value="${book.bookId}" hidden="">
+                                        <button type="submit" class="btn btn-primary">Ver el libro</button>
+                                    </form>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </section>
+                </c:forEach>
+                
+            </div>
+                
+
+                
+        
+            <footer class="footer bg-light" style="bottom:0px; position: fixed; width: 100%; text-align: center;">
+                <center><span><strong>Creado por:</strong> Dani Diaz - Pablo Paradinas Prieto - Catalin Salvan - <a href="install.jsp">DB</a></span></center>
+            </footer>
+   
         
     </body>
 </html>
