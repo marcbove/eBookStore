@@ -30,7 +30,7 @@ public class Customer implements Serializable
     private Integer customerId;
 
     @OneToMany(mappedBy = "customer")
-    private LinkedList<Order> orders;
+    private LinkedList<BookOrder> orders;
     @Column(name = "NAME")
     private String name;
     @Column(name = "PHONE")
@@ -41,13 +41,13 @@ public class Customer implements Serializable
 
     public Customer()
     {
-        this.orders = new LinkedList<Order>();
+        this.orders = new LinkedList<BookOrder>();
     }
 
     public Customer(Integer customerId)
     {
         this.customerId = customerId;
-        this.orders = new LinkedList<Order>();
+        this.orders = new LinkedList<BookOrder>();
     }
 
     public Integer getCustomerId()

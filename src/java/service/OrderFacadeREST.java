@@ -5,7 +5,7 @@
  */
 package service;
 
-import beans.Order;
+import beans.BookOrder;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,20 +27,20 @@ import javax.ws.rs.core.Response;
  */
 @Stateless
 @Path("beans.order")
-public class OrderFacadeREST extends AbstractFacade<Order>
+public class OrderFacadeREST extends AbstractFacade<BookOrder>
 {
     @PersistenceContext(unitName = "eBookStorePU")
     private EntityManager em;
 
     public OrderFacadeREST()
     {
-        super(Order.class);
+        super(BookOrder.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Order entity)
+    public void create(BookOrder entity)
     {
         super.create(entity);
     }
@@ -48,7 +48,7 @@ public class OrderFacadeREST extends AbstractFacade<Order>
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response edit(@PathParam("id") int id, Order entity)
+    public Response edit(@PathParam("id") int id, BookOrder entity)
     {
         if (super.find(id) == null)
         {
@@ -86,7 +86,7 @@ public class OrderFacadeREST extends AbstractFacade<Order>
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Order> findAll()
+    public List<BookOrder> findAll()
     {
         return super.findAll();
     }

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @XmlRootElement
-public class Order implements Serializable
+public class BookOrder implements Serializable
 {
     @Column(name = "ORDER_ID")
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,12 +27,12 @@ public class Order implements Serializable
     @JoinColumn(name = "CUSTOMER") @ManyToOne(cascade=CascadeType.PERSIST)
     private Customer customer;
 
-    public Order()
+    public BookOrder()
     {
 
     }
 
-    public Order(Integer orderId)
+    public BookOrder(Integer orderId)
     {
         this.orderId = orderId;
     }

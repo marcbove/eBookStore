@@ -55,7 +55,7 @@ public class Book implements Serializable
     @Column(name = "AUTHOR")
     private String author;
     @ManyToMany(mappedBy = "books")
-    private ArrayList<Order> orders;
+    private ArrayList<BookOrder> orders;
 
     public Book()
     {
@@ -147,12 +147,12 @@ public class Book implements Serializable
     }
 
     @XmlTransient
-    public ArrayList<Order> getOrders()
+    public ArrayList<BookOrder> getOrders()
     {
         return orders;
     }
 
-    public void setOrders(ArrayList<Order> orders)
+    public void setOrders(ArrayList<BookOrder> orders)
     {
         this.orders = orders;
     }
