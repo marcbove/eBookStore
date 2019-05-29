@@ -6,7 +6,9 @@
 package service;
 
 import beans.Book;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +20,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 
 /**
  *
@@ -37,12 +43,10 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     }
 
     @POST
-    @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response create(Book entity)
+    public void create(Book entity)
     {
         super.create(entity);
-        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
@@ -52,7 +56,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     {
         if (super.find(id) == null)
         {
-            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");
+            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat").build();
         }
         super.edit(entity);
         return Response.status(Response.Status.OK).build();
@@ -64,7 +68,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     {
         if(super.find(id) == null)
         {
-          return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");
+          return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat").build();
         }
         super.remove(super.find(id));
         return Response.status(Response.Status.OK).build();
@@ -73,32 +77,31 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Book find(@PathParam("id") Integer id)
+    public Response find(@PathParam("id") Integer id)
     {
         Book book = super.find(id);
         if (book == null)
         {
-            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");;
+            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat").build();
         }
         return Response.status(Response.Status.OK).entity(book).build();
     }
 
     @GET
-    @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response findAll(@QueryParam("criterion") String criterion)
     {
-        ArrayList<Book> bookList = new ArrayList<Book>();
+        List<Book> bookList;
         bookList = super.findAll();
-        ArrayList<Book> bookList_Ordered = new ArrayList<Book>();
+        List<Book> bookList_Ordered = new ArrayList<>();
 
         switch (criterion)
         {
             case "price":
-                bookList_Ordered = bookList.stream().sorted(book_A, book_B)->new Float(book_A.getPrice()).compareTo(book_B.getPrice())).collect(Collectors.toList());
+                bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Float(book_A.getPrice()).compareTo(book_B.getPrice())).collect(Collectors.toList());
                 break;
             case "rating":
-                bookList_Ordered = bookList.stream().sorted(book_A, book_B)->new Integer(book_A.getRating()).compareTo(book_B.getRating())).collect(Collectors.toList());
+                bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Integer(book_A.getRating()).compareTo(book_B.getRating())).collect(Collectors.toList());
                 break;
         }
         GenericEntity<List<Book>> generic = new GenericEntity<List<Book>>(bookList_Ordered){};

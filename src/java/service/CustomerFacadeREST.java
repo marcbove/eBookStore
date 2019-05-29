@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -39,15 +40,15 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Customer entity) {
+    public void create(Customer entity) 
+    {
         super.create(entity);
-        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Customer entity)
+    public Response edit(@PathParam("id") Integer id, Customer entity)
     {
         if(super.find(id) != null)
         {
@@ -59,7 +60,7 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id)
+    public Response remove(@PathParam("id") Integer id)
     {
         if(super.find(id) != null)
         {
@@ -77,18 +78,17 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
         if(super.find(id) != null)
         {
           super.remove(super.find(id));
-          return Response.status(Response.Status.OK)).build();
+          return Response.status(Response.Status.OK).build();
         }
       return Response.status(Response.Status.NOT_FOUND).entity("El client amb id: " + id + " no s'ha trobat.").build();
     }
 
     @GET
-    @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Customer> findAll()
+    public Response findAllCust()
     {
-        return super.findAll();
-        return Response.status(Response.status.NOT_FOUND).entity("No s'ha trobat cap client.").build();
+        super.findAll();
+        return Response.status(Response.Status.NOT_FOUND).entity("No s'ha trobat cap client.").build();
     }
     /*
     @GET

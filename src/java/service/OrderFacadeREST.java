@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -39,10 +40,9 @@ public class OrderFacadeREST extends AbstractFacade<Order>
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response create(Order entity)
+    public void create(Order entity)
     {
         super.create(entity);
-        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
@@ -52,7 +52,7 @@ public class OrderFacadeREST extends AbstractFacade<Order>
     {
         if (super.find(id) == null)
         {
-            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");
+            return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat").build();
         }
         super.edit(entity);
         return Response.status(Response.Status.OK).build();
@@ -65,7 +65,7 @@ public class OrderFacadeREST extends AbstractFacade<Order>
     {
         if(super.find(id) == null)
         {
-          return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat");
+          return Response.status(Response.Status.NOT_FOUND).entity("El llibre amb identificador: " + id + " no s'ha trobat").build();
         }
         super.remove(super.find(id));
         return Response.status(Response.Status.OK).build();
