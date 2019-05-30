@@ -31,7 +31,7 @@ import javax.ws.rs.core.Response;
  * @author Admin
  */
 @Stateless
-@Path("beans.book")
+@Path("books")
 public class BookFacadeREST extends AbstractFacade<Book> {
 
     @PersistenceContext(unitName = "eBookStorePU")
