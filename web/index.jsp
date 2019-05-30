@@ -39,7 +39,8 @@ Author : marcbove
                   </li>
                 </ul>
               </div>
-              <!--c:if test = "${sis}">
+              <!--
+              <c:if test = "${sis}">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="nav-item active"><a href="login.jsp">Login</a></li>
                   &nbsp or &nbsp
@@ -50,7 +51,8 @@ Author : marcbove
                 <ul class="nav navbar-nav navbar-right">
                   <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
                 </ul>
-              </c:if-->
+              </c:if>
+            -->
                 <ul class="nav navbar-nav navbar-right">
                   <li class="nav-item active"><a href="login.jsp">Login</a></li>
                   &nbsp or &nbsp

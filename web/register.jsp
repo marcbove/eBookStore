@@ -33,27 +33,16 @@ Author : marcbove
                   </li>
                 </ul>
               </div>
-              <!--c:if test = "${sis}">
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="nav-item active"><a href="login.jsp">Login</a></li>
-                  &nbsp or &nbsp
-                  <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                </ul>
-              </c:if>
-              <c:if test = "${!sis}">
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
-                </ul>
-              </c:if-->
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="nav-item active"><a href="login.jsp">Login</a></li>
-                  &nbsp or &nbsp
-                  <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                  <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
-                </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item active"><a href="login.jsp">Login</a></li>
+                &nbsp or &nbsp
+                <li class="nav-item active"><a href="register.jsp">Register</a></li>
+                <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
+              </ul>
             </nav>
           </header>
-          
+
           <div class="container" style="width: 50%">
             <div class="card">
               <article class="card-body">
@@ -80,28 +69,51 @@ Author : marcbove
                             <input type="password" class="form-control" placeholder="********" required autofocus>
                             </div>
                             <div class="form-group">
-                              <button class="btn btn-primary btn-block" type="submit">REGISTER</button>
-                            </div> <!-- form-group// -->
-                          </form>
-                        </article>
-                      </div> <!-- card.// -->
-                    </div>
+                              <label><strong>Gender:&nbsp&nbsp</strong></label>
+                              <label class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" value="option1">
+                                  <span class="form-check-label"> Male </span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="gender" value="option2">
+                                    <span class="form-check-label"> Female </span>
+                                  </label>
+                                  <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="option2">
+                                      <span class="form-check-label"> Other </span>
+                                    </label>
+                                  </div> <!-- form-group end.// -->
+                                  <div class="form-group">
+                                    <div class="checkbox" style="">
+                                      <label style="font-weight: 250; font-size: 1.0rem;"> <input type="checkbox" checked="checked"> I would like to receive exclusive discounts, news and trends by e-mail. I can unsubscribe whenever I want.</label>
+                                    </div> <!-- checkbox .// -->
+                                  </div> <!-- form-group// -->
+                                  <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit">REGISTER NOW</button>
+                                  </div> <!-- form-group// -->
+                                  <label style="font-weight: 250; font-size: 1.0rem;">By clicking the 'Register Now' button, you confirm that you accept our Terms of use and Privacy Policy.</label>
+                                </form>
+                              </article>
+                              <div class="border-top card-body text-center">Already have an account? <a href="login.jsp">Login</a></div>
+                              </div> <!-- card.// -->
+                            </div> <!-- container.// -->
 
-                    <footer class="footer font-small blue pt-4" style="margin-top: 10%; margin-left: 20%">
-                      <div class="container" >
-                        <div class="row">
-                          <div class="col-md-8">
-                            <h5>Information</h5>
-                            <ul>
-                              <li>Created by: Marc Bové & Oriol Balagué</li>
-                              <li><a href="https://github.com/marcbove/eBookStore">GitHub Project</a></li>
-                            </ul>
-                          </div>
-                          <div class="col-md-9">
-                            <ul class="footer-copyright text-center py-3">© 2019 Copyright </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </footer>
-                  </body>
-                </html>
+
+                          <footer class="footer font-small blue pt-4" style="margin-top: 10%; margin-left: 20%">
+                            <div class="container" >
+                              <div class="row">
+                                <div class="col-md-8">
+                                  <h5>Information</h5>
+                                  <ul>
+                                    <li>Created by: Marc Bové & Oriol Balagué</li>
+                                    <li><a href="https://github.com/marcbove/eBookStore">GitHub Project</a></li>
+                                  </ul>
+                                </div>
+                                <div class="col-md-9">
+                                  <ul class="footer-copyright text-center py-3">© 2019 Copyright </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </footer>
+                        </body>
+                      </html>

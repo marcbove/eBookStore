@@ -33,18 +33,7 @@ Author : marcbove
                   </li>
                 </ul>
               </div>
-              <!--c:if test = "${sis}">
-              <ul class="nav navbar-nav navbar-right">
-              <li class="nav-item active"><a href="login.jsp">Login</a></li>
-              &nbsp or &nbsp
-              <li class="nav-item active"><a href="register.jsp">Register</a></li>
-            </ul>
-          </c:if>
-          <c:if test = "${!sis}">
-          <ul class="nav navbar-nav navbar-right">
-          <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
-        </ul>
-      </c:if-->
+
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item active"><a href="login.jsp">Login</a></li>
         &nbsp or &nbsp
@@ -64,7 +53,7 @@ Author : marcbove
             <input type="text" class="form-control" placeholder="E-Mail" required autofocus>
           </div> <!-- form-group// -->
           <div class="form-group">
-            <label style="font-weight: 300; font-size: 1.5rem; width: 220px;">Password></label>
+            <label style="font-weight: 300; font-size: 1.5rem; width: 220px;">Password</label>
             <input type="password" class="form-control" placeholder="Password" required autofocus>
           </div> <!-- form-group// -->
           <div class="form-group">
@@ -86,7 +75,7 @@ Author : marcbove
         <div class="col-md-8">
           <h5>Information</h5>
           <ul>
-            <li>Created by: Marc Bové & Oriol Balagué</li>
+            <li>Created by: Marc Bove & Oriol Balague</li>
             <li><a href="https://github.com/marcbove/eBookStore">GitHub Project</a></li>
           </ul>
         </div>

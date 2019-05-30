@@ -1,0 +1,12 @@
+<!--c:if test = "${sis}">
+  <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item active"><a href="login.jsp">Login</a></li>
+    &nbsp or &nbsp
+    <li class="nav-item active"><a href="register.jsp">Register</a></li>
+  </ul>
+</c:if>
+<c:if test = "${!sis}">
+  <ul class="nav navbar-nav navbar-right">
+    <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
+  </ul>
+</c:if-->
