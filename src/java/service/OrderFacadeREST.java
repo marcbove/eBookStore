@@ -5,7 +5,7 @@
  */
 package service;
 
-import beans.BookOrder;
+import entities.BookOrder;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

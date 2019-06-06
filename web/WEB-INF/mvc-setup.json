@@ -7,6 +7,9 @@
     {
       "URI": "/write",
       "class": "sob.command.WriteCommand"
+    },
+    {
+      "URI": "/"
     }
   ]
 }

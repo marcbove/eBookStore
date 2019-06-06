@@ -35,7 +35,7 @@ private List<String> resetDatabase(boolean force) throws Exception {
 
         //drop tables if they exist
         String tablenames[] = new String[]{
-            "BOOK", "BOOKORDER", "CUSTOMER"};
+            "BOOK", "BOOKORDER", "CUSTOMER", };
         for (String tablename : tablenames) {
             try {
                 stmt.executeUpdate("DROP TABLE " + dbname + "." + tablename);
@@ -57,9 +57,9 @@ private List<String> resetDatabase(boolean force) throws Exception {
             + " NOM VARCHAR (25))",
 
         */
-            "CREATE TABLE " + dbname + " .BOOK (BOOK_ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), RATING INT, DESCRIPTION VARCHAR(240), COVER VARCHAR(240), PRICE FLOAT, NAME VARCHAR(40), AUTHOR VARCHAR(40), STOCK INT)",
-            "CREATE TABLE " + dbname + " .BOOKORDER (ORDER_ID  INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), CUSTOMER_ID INT)",
-            "CREATE TABLE " + dbname + " .CUSTOMER (CUSTOMER_ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), PHONE VARCHAR(12), EMAIL VARCHAR(40), NAME VARCHAR(25), PASSWORD VARCHAR(25))"
+            "CREATE TABLE " + dbname + ".BOOK (BOOK_ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), RATING INT, DESCRIPTION VARCHAR(240), COVER VARCHAR(240), PRICE FLOAT, NAME VARCHAR(40), AUTHOR VARCHAR(40), STOCK INT)",
+            "CREATE TABLE " + dbname + ".BOOKORDER (ORDER_ID  INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), CUSTOMER_ID INT)",
+            "CREATE TABLE " + dbname + ".CUSTOMER (CUSTOMER_ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), PHONE VARCHAR(12), EMAIL VARCHAR(40), NAME VARCHAR(25), PASSWORD VARCHAR(25))",
         };
 
         for (String table : tables) {

@@ -2,6 +2,7 @@
 Created on : 30/05/2019
 Author : marcbove
 --%>
+<%@page import="entities.AvailableBooks"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -116,6 +117,7 @@ Author : marcbove
                       <ul>
                         <li>Created by: Marc Bové & Oriol Balagué</li>
                         <li><a href="https://github.com/marcbove/eBookStore">GitHub Project</a></li>
+                        <li><a href="install.jsp">Drop & Create DataBase</a></li>
                       </ul>
                     </div>
                     <div class="col-md-9">

@@ -5,7 +5,7 @@
  */
 package service;
 
-import beans.Customer;
+import entities.Customer;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -40,7 +40,7 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Customer entity) 
+    public void create(Customer entity)
     {
         super.create(entity);
     }

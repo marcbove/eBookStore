@@ -1,16 +1,16 @@
-package beans;
+package entities;
 
 import java.io.Serializable;
- 
-public class Author implements Serializable 
-{   
+
+public class Author implements Serializable
+{
     private String name;
     private String biography;
-    
+
     public Author(){
 
     }
-        
+
     public Author(String name)
     {
         this.name = name;
