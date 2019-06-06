@@ -13,7 +13,7 @@ private List<String> resetDatabase(boolean force) throws Exception {
          *
          * If there is any problem, it will exit at the very first error.
          */
-        String dbname = "BookStoreDB";
+        String dbname = "BookStoreBD";
         Class.forName("org.apache.derby.jdbc.ClientDriver");
         /* this will generate database if not exist */
         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/" + dbname + ";create=true", "sob", "sob");
