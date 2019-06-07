@@ -9,11 +9,12 @@ Author : marcbove
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-          <script src="js/bootstrap.min.js"></script>
-          <title>eBookStore</title>
-        </head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>eBookStore</title>
+  </head>
         <body>
           <%
           HttpSession sesion = request.getSession();
@@ -50,7 +51,7 @@ Author : marcbove
               </c:if>
               <c:if test = "${!sis}">
                 <ul class="nav navbar-nav navbar-right">
-                  <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
+                  <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
                 </ul>
               </c:if>
             -->
@@ -58,7 +59,7 @@ Author : marcbove
                   <li class="nav-item active"><a href="login.jsp">Login</a></li>
                   &nbsp or &nbsp
                   <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                  <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
+                  <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
                 </ul>
             </nav>
           </header>
@@ -72,7 +73,8 @@ Author : marcbove
                 </select>
               </div>
               <div class="column input-group-btn">
-                <button type="submit" class="btn btn-default">Order</button>
+                <a href="sort.do">Ordenamelo Loko</a>
+                <button type="submit" class="btn btn-default">Sort</button>
               </div>
             </div>
             <br>

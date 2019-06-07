@@ -95,7 +95,11 @@ public class BookFacadeREST extends AbstractFacade<Book> {
         List<Book> bookList;
         bookList = super.findAll();
         List<Book> bookList_Ordered = new ArrayList<>();
-
+        if(criterion == null)
+        {
+            criterion = "price";
+        }
+        
         switch (criterion)
         {
             case "price":

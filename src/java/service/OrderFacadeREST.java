@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
  * @author Admin
  */
 @Stateless
-@Path("beans.order")
+@Path("order")
 public class OrderFacadeREST extends AbstractFacade<BookOrder>
 {
     @PersistenceContext(unitName = "eBookStorePU")

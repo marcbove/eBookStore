@@ -37,7 +37,7 @@ Author : marcbove
                 <li class="nav-item active"><a href="login.jsp">Login</a></li>
                 &nbsp or &nbsp
                 <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                <li class="nav-item active"><a href="carrito.jsp">${username}'s Shopping Cart</a></li>
+                <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
               </ul>
             </nav>
           </header>
