@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
     @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId"),
     @NamedQuery(name = "Book.findByName", query = "SELECT b FROM Book b WHERE b.name = :name"),
-    //@NamedQuery(name = "Book.orderByPrice", query="SELECT b FROM Book b ORDER BY b.price DESC"),
-    //@NamedQuery(name = "Book.orderByRate", query="SELECT b FROM Book b ORDER BY b.rating DESC")
+    @NamedQuery(name = "Book.orderByPrice", query="SELECT b FROM Book b ORDER BY b.price ASC"),
+    @NamedQuery(name = "Book.orderByRate", query="SELECT b FROM Book b ORDER BY b.rating ASC")
 })
 public class Book implements Serializable
 {

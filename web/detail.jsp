@@ -2,6 +2,8 @@
 Created on : 30/05/2019
 Author : marcbove
 --%>
+<%@page import="entities.Book"%>
+<%@page import="entities.AvailableBooks"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -13,7 +15,15 @@ Author : marcbove
       <script src="js/bootstrap.min.js"></script>
           <title>eBookStore</title>
         </head>
-        <body>
+  <body>
+      <%
+        Book book = (Book) request.getAttribute("book");
+        pageContext.setAttribute("book", book);
+        HttpSession sesion = request.getSession();
+        String user = (String) sesion.getAttribute("username");
+        Boolean sis = user == null;
+        pageContext.setAttribute("sis", sis);
+      %>
           <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
               <div class="navbar-collapse">
@@ -41,7 +51,7 @@ Author : marcbove
               </ul>
             </nav>
           </header>
-
+          <center><h1>${book.title}</h1></center>
           <div class="card">
             <div>
             </div>
@@ -112,6 +122,7 @@ Author : marcbove
                     <ul>
                       <li>Created by: Marc Bové & Oriol Balagué</li>
                       <li><a href="https://github.com/marcbove/eBookStore">GitHub Project</a></li>
+                      <li><a href="install.jsp">Drop & Create DataBase</a></li>
                     </ul>
                   </div>
                   <div class="col-md-9">

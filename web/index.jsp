@@ -3,6 +3,7 @@ Created on : 30/05/2019
 Author : marcbove
 --%>
 <%@page import="entities.AvailableBooks"%>
+<%@page import="entities.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -73,7 +74,6 @@ Author : marcbove
                 </select>
               </div>
               <div class="column input-group-btn">
-                <a href="sort.do">Ordenamelo Loko</a>
                 <button type="submit" class="btn btn-default">Sort</button>
               </div>
             </div>

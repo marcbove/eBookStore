@@ -24,7 +24,7 @@ public class SortCommand implements Command
         String sort = request.getParameter("sort");
 
         Client customer = ClientBuilder.newClient();
-        String list = customer.target("http://localhost:8080/eBookStore/rest/api/v1/books?criterion=" + sort).request().get(String.class);
+        Book list = customer.target("http://localhost:8080/eBookStore/rest/api/v1/books?criterion=" + sort).request().get(Book.class);
 
         AvailableBooks books = this.stringtoXML(list);
 
@@ -33,7 +33,7 @@ public class SortCommand implements Command
         context.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
-    private AvailableBooks stringtoXML(String str)
+    private AvailableBooks stringtoXML(Book str)
     {
         JAXBContext jaxbcontext;
         AvailableBooks books = null;

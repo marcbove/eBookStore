@@ -14,7 +14,7 @@
       "class": "sob.command.SortCommand"
     },
     {
-      "URI": "/book",
+      "URI": "/books",
       "class": "sob.command.BookDetailCommand"
     }
   ]

@@ -99,11 +99,21 @@ public class BookFacadeREST extends AbstractFacade<Book> {
         {
             criterion = "price";
         }
-        
+
         switch (criterion)
         {
             case "price":
-                bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Float(book_A.getPrice()).compareTo(book_B.getPrice())).collect(Collectors.toList());
+                for (Book book : bookList) {
+                    if (book.getPrice() == 15.0)
+                    {
+
+                    }
+                    else
+                    {
+                      bookList_Ordered.add(book);
+                    }
+                }
+                //bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Float(book_A.getPrice()).compareTo(book_B.getPrice())).collect(Collectors.toList());
                 break;
             case "rating":
                 bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Integer(book_A.getRating()).compareTo(book_B.getRating())).collect(Collectors.toList());
