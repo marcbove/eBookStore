@@ -42,8 +42,8 @@ public class Book implements Serializable
     private float price;
     @Column(name = "DESCRIPTION")
     private String description;
-    @Column(name = "COVER")
-    private String cover;
+    /*@Column(name = "COVER")
+    private String cover;*/
     /*
     @ElementCollection
     @CollectionTable
@@ -126,15 +126,15 @@ public class Book implements Serializable
         this.description = description;
     }
 
-    public String getCover()
+    /*public String getCover()
     {
         return cover;
-    }
+    }*/
 
-    public void setCover(String cover)
+    /*public void setCover(String cover)
     {
         this.cover = cover;
-    }
+    }*/
 
     public String getAuthor()
     {
@@ -179,6 +179,12 @@ public class Book implements Serializable
         }
         return true;
     }
+/*
+    @Override
+    public int compareTo(Book b)
+    {
+        return Integer.compare(this.getPrice(), b.getPrice())
+    }*/
 
     @Override
     public String toString()

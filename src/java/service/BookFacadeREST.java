@@ -8,6 +8,8 @@ package service;
 
 import entities.Book;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
@@ -44,7 +46,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     }
 
     @POST
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void create(Book entity)
     {
         super.create(entity);
@@ -52,7 +54,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
 
     @PUT
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public Response edit(@PathParam("id") Integer id, Book entity)
     {
         if (super.find(id) == null)
@@ -77,7 +79,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response find(@PathParam("id") Integer id)
     {
         Book book = super.find(id);
@@ -89,7 +91,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     }
 
     @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response findAll(@QueryParam("criterion") String criterion)
     {
         List<Book> bookList;
@@ -97,26 +99,21 @@ public class BookFacadeREST extends AbstractFacade<Book> {
         List<Book> bookList_Ordered = new ArrayList<>();
         if(criterion == null)
         {
-            criterion = "price";
+            criterion = "rating";
         }
 
         switch (criterion)
         {
             case "price":
-                for (Book book : bookList) {
-                    if (book.getPrice() == 15.0)
-                    {
-
-                    }
-                    else
-                    {
-                      bookList_Ordered.add(book);
-                    }
-                }
-                //bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Float(book_A.getPrice()).compareTo(book_B.getPrice())).collect(Collectors.toList());
+                //bookList.sort((b1, b2) -> new Float(b1.getPrice().compareTo(b2.getPrice())));
+                //bookList.sort(Comparator.comparing(Book::getPrice));
+                //bookList_Ordered = bookList;
+                bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Float(book_A.getPrice()).compareTo(book_B.getPrice())).collect(Collectors.toList());
+                Collections.reverse(bookList_Ordered);
                 break;
             case "rating":
                 bookList_Ordered = bookList.stream().sorted((book_A, book_B) -> new Integer(book_A.getRating()).compareTo(book_B.getRating())).collect(Collectors.toList());
+                Collections.reverse(bookList_Ordered);
                 break;
         }
         GenericEntity<List<Book>> generic = new GenericEntity<List<Book>>(bookList_Ordered){};
@@ -126,7 +123,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     /*
     @GET
     @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Book> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }*/

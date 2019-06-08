@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entities.AvailableBooks;
+import entities.Book;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,7 @@ public class SortCommand implements Command
         String sort = request.getParameter("sort");
 
         Client customer = ClientBuilder.newClient();
-        Book list = customer.target("http://localhost:8080/eBookStore/rest/api/v1/books?criterion=" + sort).request().get(Book.class);
+        String list = customer.target("http://localhost:8080/eBookStore/rest/api/v1/books?criterion=" + sort).request().get(String.class);
 
         AvailableBooks books = this.stringtoXML(list);
 
@@ -33,7 +34,7 @@ public class SortCommand implements Command
         context.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
-    private AvailableBooks stringtoXML(Book str)
+    private AvailableBooks stringtoXML(String str)
     {
         JAXBContext jaxbcontext;
         AvailableBooks books = null;
