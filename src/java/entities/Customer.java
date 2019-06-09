@@ -38,6 +38,8 @@ public class Customer implements Serializable
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Column(name = "EMAIL")
     private String email;
+    @Column(name = "PSWD")
+    private String pswd;
 
     public Customer()
     {
@@ -88,6 +90,16 @@ public class Customer implements Serializable
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public String getPswd()
+    {
+        return pswd;
+    }
+
+    public void setPswd(String pswd)
+    {
+        this.pswd = pswd;
     }
 
     @Override

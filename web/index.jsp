@@ -26,17 +26,15 @@ Author : marcbove
           <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
               <div class="navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/eBookStore" role="button">
-                      Show All Products
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <form class="form-inline">
-                    </form>
-                  </li>
-                </ul>
+                <form action="criterion.do">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/eBookStore/rest/api/v1/books?criterion=rating" role="button">
+                        Show All Products
+                      </a>
+                    </li>
+                  </ul>
+                </form>
                 <ul class="navbar-nav lg-ml-5">
                   <li class="nav-item ml-auto">
                   </li>
@@ -66,17 +64,19 @@ Author : marcbove
           </header>
           <div class="container" style="margin-top: 2%">
             <center><h1>eBookStore</h1></center>
-            <div class="row">
-              <div class="column">
-                <select class="form-control" name="sort">
-                  <option value="price">Price</option>
-                  <option value="rating">Rating</option>
-                </select>
+            <form action="criterion.do">
+              <div class="row">
+                <div class="column">
+                  <select class="form-control" name="sort">
+                    <option value="price">Price</option>
+                    <option value="rating">Rating</option>
+                  </select>
+                </div>
+                <div class="column input-group-btn">
+                  <button type="submit" class="btn btn-default">Sort</button>
+                </div>
               </div>
-              <div class="column input-group-btn">
-                <button type="submit" class="btn btn-default">Sort</button>
-              </div>
-            </div>
+            </form>
             <br>
               <div class="card">
                 <c:forEach var="book" items="${books.books}">

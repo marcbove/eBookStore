@@ -21,7 +21,6 @@ public class SortCommand implements Command
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        // 1. process the request
         String sort = request.getParameter("sort");
 
         Client customer = ClientBuilder.newClient();

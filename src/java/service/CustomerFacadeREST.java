@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
  * @author Admin
  */
 @Stateless
-@Path("customer")
+@Path("customers")
 public class CustomerFacadeREST extends AbstractFacade<Customer>
 {
     @PersistenceContext(unitName = "eBookStorePU")

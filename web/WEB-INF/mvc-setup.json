@@ -16,6 +16,10 @@
     {
       "URI": "/books",
       "class": "sob.command.BookDetailCommand"
+    },
+    {
+      "URI": "/login",
+      "class": "sob.command.LoginCommand"
     }
   ]
 }

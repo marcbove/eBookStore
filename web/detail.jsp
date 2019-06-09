@@ -51,6 +51,7 @@ Author : marcbove
               </ul>
             </nav>
           </header>
+          <center><h1><c:out value="${book.getTitle()}"/></h1>
           <center><h1>${book.title}</h1></center>
           <div class="card">
             <div>
