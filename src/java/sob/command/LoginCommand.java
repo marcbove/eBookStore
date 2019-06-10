@@ -21,11 +21,9 @@ public class LoginCommand implements Command
   {
    String name = request.getParameter("name");
    String pswd = request.getParameter("pswd");
-   System.out.println(name);
-   System.out.println(pswd);
    Client cust = ClientBuilder.newClient();
    List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});
-   
+
    customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
    boolean existeix = false;
    Customer login = null;
@@ -40,12 +38,12 @@ public class LoginCommand implements Command
           }
         }
     }
-   
+
    if(existeix)
    {
         HttpSession sesion = request.getSession(true);
         sesion.setAttribute("name", login.getName());
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/criterion.do").forward(request, response);
     }
     else
     {

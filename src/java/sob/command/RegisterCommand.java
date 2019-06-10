@@ -50,7 +50,7 @@ public class RegisterCommand implements Command
    if(!registrat){
             HttpSession sesion = request.getSession();
             sesion.setAttribute("name", name);
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/showBooks.jsp").forward(request, response);
         }
         else{
             request.getRequestDispatcher("/register.jsp").forward(request, response);

@@ -5,7 +5,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="/eBookStore" role="button">
-            Show All Products
+            Home
           </a>
         </li>
       </ul>

@@ -57,7 +57,7 @@ private List<String> resetDatabase(boolean force) throws Exception {
             + " NOM VARCHAR (25))",
 
         */
-            "CREATE TABLE " + dbname + ".BOOK (BOOK_ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), RATING INT, COVER VARCHAR(100), DESCRIPTION VARCHAR(240), PRICE FLOAT, NAME VARCHAR(40), AUTHOR VARCHAR(40), STOCK INT)",
+            "CREATE TABLE " + dbname + ".BOOK (BOOK_ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), RATING INT, COVER VARCHAR(100), DESCRIPTION VARCHAR(1000), PRICE FLOAT, NAME VARCHAR(40), AUTHOR VARCHAR(40), STOCK INT)",
             "CREATE TABLE " + dbname + ".BOOKORDER (ORDER_ID  INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), CUSTOMER_ID INT)",
             "CREATE TABLE " + dbname + ".CUSTOMER (CUSTOMER_ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), PHONE VARCHAR(12), EMAIL VARCHAR(40), NAME VARCHAR(25), PSWD VARCHAR(25))",
         };
@@ -78,9 +78,9 @@ private List<String> resetDatabase(boolean force) throws Exception {
         String data[] = new String[]{
             "INSERT INTO " + dbname + ".CUSTOMER(PHONE, EMAIL, NAME, PSWD) VALUES ('123456789', 'sob@sob.com', 'sob', 'sob')",
 
-            "INSERT INTO " + dbname + ".BOOK(RATING, COVER, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (5, 'images/watchmen.jpg', 'This is a description', 9.95, 'Watchmen', 'Alan Moore, Dave Gibbons', 50)",
-            "INSERT INTO " + dbname + ".BOOK(RATING, COVER, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (4, 'images/sherlock.jpg',  'This is a description', 24.95, 'Sherlock Holmes Complete', 'Arthur Conan Doyle', 38)",
-            "INSERT INTO " + dbname + ".BOOK(RATING, COVER, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (3, 'images/got.jpg', 'This is a description', 39.95, 'A Song of Fire and Ice', 'George R.R. Martin', 75)"
+            "INSERT INTO " + dbname + ".BOOK(RATING, COVER, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (5, 'images/watchmen.jpg', 'In an alternate world where the mere presence of American superheroes changed history, the US won the Vietnam War, Nixon is still president, and the cold war is in full effect. Watchmen begins as a murder-mystery, but soon unfolds into a planet-altering conspiracy. As the resolution comes to a head, the unlikely group of reunited heroes — Rorschach, Nite Owl, Silk Spectre, Dr. Manhattan and Ozymandias — have to test the limits of their convictions and ask themselves where the true line is between good and evil.', 9.95, 'Watchmen', 'Alan Moore, Dave Gibbons', 50)",
+            "INSERT INTO " + dbname + ".BOOK(RATING, COVER, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (4, 'images/sherlock.jpg',  'Sherlock Holmes is a fictional detective of the late 19th and early 20th centuries, who first appeared in publication in 1887. He is the creation of Scottish born author and physician Sir Arthur Conan Doyle. A brilliant London-based detective, Holmes is famous for his intellectual prowess, and is renowned for his skillful use of deductive reasoning (somewhat mistakenly - see inductive reasoning) and astute observation to solve difficult cases. He is arguably the most famous fictional detective', 24.95, 'Sherlock Holmes Complete', 'Arthur Conan Doyle', 38)",
+            "INSERT INTO " + dbname + ".BOOK(RATING, COVER, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (3, 'images/got.jpg', 'For the first time, all five novels in the epic fantasy series that inspired HBO’s Game of Thrones are together in one boxed set. An immersive entertainment experience unlike any other, A Song of Ice and Fire has earned George R. R. Martin—dubbed “the American Tolkien” by Time magazine—international acclaim and millions of loyal readers. ', 39.95, 'A Song of Fire and Ice', 'George R.R. Martin', 75)"
         };
 
         for (String datum : data) {

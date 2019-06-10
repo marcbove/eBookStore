@@ -16,10 +16,13 @@ public class SortCommand implements Command
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String sort = request.getParameter("sort");
-
+        if(sort == null)
+        {
+            sort = "rating";
+        }
         Client customer = ClientBuilder.newClient();
         List<Book> books = customer.target("http://localhost:8080/eBookStore/rest/api/v1/books?criterion=" + sort).request().get(new GenericType<List<Book>>(){});
         request.setAttribute("books", books);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/showBooks.jsp").forward(request, response);
     }
 }
