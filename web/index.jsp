@@ -49,9 +49,8 @@ Author : marcbove
           <div class="row row-sm">
             <aside class="col-sm-3">
               <div class="img-wrap">
-                <a href="">
-                  <img src="" class="img-md"></div>
-              </a>
+                  <img style="max-width: 60%; max-height: 60%;" src="${book.cover}" class="mx-5 py-1 zoom img-md" alt="${book.name} Book Cover">
+              </div>
             </aside>
             <!-- col.// -->
             <div class="col-sm-6">

@@ -25,14 +25,14 @@ Author : marcbove
   <header>
     <%@include file="/navbar.jsp" %>
   </header>
-      <h1 class="mx-5">${book.name}</h1>
+      <center><h1 class="mx-5">${book.name}</h1></center>
     <div class="card">
-  
+
       <div class="row no-gutters">
         <aside class="col-sm-5 border-right my-auto">
           <article class="gallery-wrap">
-            <div class="img-small-wrap">
-              <div> <a data-fancybox=""></a></div>
+            <div class="img-big-wrap">
+              <img class="mx-5 my-3 rounded zoom float-right" style="max-width: 60%; max-height: 60%;" src="${book.cover}"></a>
             </div> <!-- slider-product.// -->
           </article> <!-- gallery-wrap .end// -->
         </aside>

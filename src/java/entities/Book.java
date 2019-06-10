@@ -42,8 +42,8 @@ public class Book implements Serializable
     private float price;
     @Column(name = "DESCRIPTION")
     private String description;
-    /*@Column(name = "COVER")
-    private String cover;*/
+    @Column(name = "COVER")
+    private String cover;
     /*
     @ElementCollection
     @CollectionTable
@@ -125,7 +125,7 @@ public class Book implements Serializable
     {
         this.description = description;
     }
-/*
+
     public String getCover()
     {
         return cover;
@@ -134,7 +134,7 @@ public class Book implements Serializable
     public void setCover(String cover)
     {
         this.cover = cover;
-    }*/
+    }
 
     public String getAuthor()
     {
