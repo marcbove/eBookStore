@@ -1,4 +1,4 @@
-package beans;
+package entities;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -38,6 +38,8 @@ public class Customer implements Serializable
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Column(name = "EMAIL")
     private String email;
+    @Column(name = "PSWD")
+    private String pswd;
 
     public Customer()
     {
@@ -50,7 +52,7 @@ public class Customer implements Serializable
         this.orders = new LinkedList<BookOrder>();
     }
 
-    public Integer getCustomerId()
+        public Integer getCustomerId()
     {
         return customerId;
     }
@@ -90,6 +92,16 @@ public class Customer implements Serializable
         this.email = email;
     }
 
+    public String getPswd()
+    {
+        return pswd;
+    }
+
+    public void setPswd(String pswd)
+    {
+        this.pswd = pswd;
+    }
+
     @Override
     public int hashCode()
     {
@@ -116,4 +128,5 @@ public class Customer implements Serializable
     {
         return "[ customerId = " + customerId + " ]";
     }
-}
+
+ }

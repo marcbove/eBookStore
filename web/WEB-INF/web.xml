@@ -24,13 +24,13 @@
  License Header, with the fields enclosed by brackets [] replaced by
  your own identifying information:
  "Portions Copyrighted [year] [name of copyright owner]"
- 
+
  Contributor(s):
- 
+
  The Original Software is NetBeans. The Initial Developer of the Original
  Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
  Microsystems, Inc. All Rights Reserved.
- 
+
  If you wish your version of this file to be governed by only the CDDL
  or only the GPL Version 2, indicate your decision by adding
  "[Contributor] elects to include this software in this distribution
@@ -51,6 +51,24 @@
             30
         </session-timeout>
     </session-config>
+    <servlet>
+        <servlet-name>install</servlet-name>
+        <jsp-file>install.jsp</jsp-file>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>controller</servlet-name>
+        <servlet-class>sob.ControllerServlet</servlet-class>
+        <init-param>
+            <param-name>setup</param-name>
+            <param-value>mvc-setup.json</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
         </welcome-file-list>

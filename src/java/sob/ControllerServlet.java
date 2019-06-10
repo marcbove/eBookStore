@@ -22,7 +22,7 @@ public class ControllerServlet extends HttpServlet {
         try {
             JsonReader reader = Json.createReader(input);
             JsonObject setup = reader.readObject();
-        
+
             for(JsonValue value: setup.getJsonArray("commands")){
                 JsonObject command = (JsonObject) value;
                 Class<?> clazz = Class.forName(command.getString("class"));

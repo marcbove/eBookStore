@@ -5,7 +5,7 @@
  */
 package service;
 
-import beans.Customer;
+import entities.Customer;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,11 +13,13 @@ import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -26,7 +28,7 @@ import javax.ws.rs.core.Response;
  * @author Admin
  */
 @Stateless
-@Path("beans.customer")
+@Path("customers")
 public class CustomerFacadeREST extends AbstractFacade<Customer>
 {
     @PersistenceContext(unitName = "eBookStorePU")
@@ -40,27 +42,34 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Customer entity) 
+    public void create(Customer entity)
     {
         super.create(entity);
     }
-
+   
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response edit(@PathParam("id") Integer id, Customer entity)
-    {
-        if(super.find(id) != null)
-        {
-            super.edit(entity);
-            return Response.status(Response.Status.OK).entity(entity).build();
+    public Response edit(@PathParam("id") String id, Customer entity, @HeaderParam("name") String user, @HeaderParam("pswd") String password) {
+        
+        if(super.find(id)!=null){
+            if((user.equals(super.find(id).getName())) && (password.equals(super.find(id).getPswd()))){
+                super.edit(entity);
+                GenericEntity entity2=new GenericEntity<String>("The edit of the client was succesfully done, ID:  "+ id ){};
+                return Response.ok(entity2).build();
+            }
+            else{
+                return Response.status(Response.Status.FORBIDDEN).entity("Usuari o contrasenya incorrectes!").build();
+             }
+        }else{
+            return Response.status(Response.Status.NOT_FOUND).entity("El client amb id: " + id + " no s'ha trobat.").build();    
         }
-        return Response.status(Response.Status.NOT_FOUND).entity("El client amb id: " + id + " no s'ha trobat.").build();
+        
     }
 
     @DELETE
     @Path("{id}")
-    public Response remove(@PathParam("id") Integer id)
+    public Response remove(@PathParam("id") Integer id,  @HeaderParam("name") String Username,@HeaderParam("pswd") String Password)
     {
         if(super.find(id) != null)
         {
@@ -73,7 +82,7 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response find(@PathParam("id") Integer id)
+    public Response find(@PathParam("id") Integer id,@HeaderParam("name") String Username,@HeaderParam("pswd") String Password)
     {
         if(super.find(id) != null)
         {
@@ -109,5 +118,4 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     protected EntityManager getEntityManager() {
         return em;
     }
-
 }

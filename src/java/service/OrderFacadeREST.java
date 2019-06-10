@@ -5,7 +5,7 @@
  */
 package service;
 
-import beans.BookOrder;
+import entities.BookOrder;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,7 +26,7 @@ import javax.ws.rs.core.Response;
  * @author Admin
  */
 @Stateless
-@Path("beans.order")
+@Path("order")
 public class OrderFacadeREST extends AbstractFacade<BookOrder>
 {
     @PersistenceContext(unitName = "eBookStorePU")

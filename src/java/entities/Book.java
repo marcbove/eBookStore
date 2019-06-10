@@ -1,4 +1,4 @@
-package beans;
+package entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
     @NamedQuery(name = "Book.findByBookId", query = "SELECT b FROM Book b WHERE b.bookId = :bookId"),
     @NamedQuery(name = "Book.findByName", query = "SELECT b FROM Book b WHERE b.name = :name"),
-    //@NamedQuery(name = "Book.orderByPrice", query="SELECT b FROM Book b ORDER BY b.price DESC"),
-    //@NamedQuery(name = "Book.orderByRate", query="SELECT b FROM Book b ORDER BY b.rating DESC")
+    @NamedQuery(name = "Book.orderByPrice", query="SELECT b FROM Book b ORDER BY b.price ASC"),
+    @NamedQuery(name = "Book.orderByRate", query="SELECT b FROM Book b ORDER BY b.rating ASC")
 })
 public class Book implements Serializable
 {
@@ -42,8 +42,8 @@ public class Book implements Serializable
     private float price;
     @Column(name = "DESCRIPTION")
     private String description;
-    @Column(name = "COVER")
-    private String cover;
+    /*@Column(name = "COVER")
+    private String cover;*/
     /*
     @ElementCollection
     @CollectionTable
@@ -126,15 +126,15 @@ public class Book implements Serializable
         this.description = description;
     }
 
-    public String getCover()
+    /*public String getCover()
     {
         return cover;
-    }
+    }*/
 
-    public void setCover(String cover)
+    /*public void setCover(String cover)
     {
         this.cover = cover;
-    }
+    }*/
 
     public String getAuthor()
     {
@@ -179,6 +179,12 @@ public class Book implements Serializable
         }
         return true;
     }
+/*
+    @Override
+    public int compareTo(Book b)
+    {
+        return Integer.compare(this.getPrice(), b.getPrice())
+    }*/
 
     @Override
     public String toString()

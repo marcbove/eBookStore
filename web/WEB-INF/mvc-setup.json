@@ -1,5 +1,6 @@
 {
-  "commands": [
+  "commands":
+  [
     {
       "URI": "/init",
       "class": "sob.command.InitCommand"
@@ -7,6 +8,21 @@
     {
       "URI": "/write",
       "class": "sob.command.WriteCommand"
+    },
+    {
+      "URI": "/criterion",
+      "class": "sob.command.SortCommand"
+    },
+    {
+      "URI": "/books",
+      "class": "sob.command.BookDetailCommand"
+    },
+    {
+      "URI": "/login",
+      "class": "sob.command.LoginCommand"
+    },{
+      "URI": "/login1",
+      "class": "sob.command.LoginCommand1"
     }
   ]
 }
