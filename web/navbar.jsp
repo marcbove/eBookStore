@@ -25,7 +25,8 @@
   </c:if>
   <c:if test = "${!sis}">
     <ul class="nav navbar-nav navbar-right">
-      <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
+      <li>&nbsp&nbsp&nbsp Welcome ${name}! &nbsp&nbsp&nbsp</li>
+      <li class="nav-item active"><a href="cart.jsp">Show Shopping Cart</a></li>
     </ul>
   </c:if>
 

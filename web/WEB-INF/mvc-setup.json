@@ -1,7 +1,5 @@
 {
-  "commands":
-  [
-    {
+  "commands": [{
       "URI": "/criterion",
       "class": "sob.command.SortCommand"
     },
@@ -12,6 +10,10 @@
     {
       "URI": "/login",
       "class": "sob.command.LoginCommand"
+    },
+    {
+      "URI": "/register",
+      "class": "sob.command.RegisterCommand"
     }
   ]
 }

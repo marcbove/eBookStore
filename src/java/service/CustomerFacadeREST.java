@@ -6,20 +6,23 @@
 package service;
 
 import entities.Customer;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
+
 
 /**
  *
@@ -48,7 +51,7 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response edit(@PathParam("id") Integer id, Customer entity)
+    public Response edit(@PathParam("id") String id, Customer entity, @HeaderParam("name") String name, @HeaderParam("pswd") String pswd)
     {
         if(super.find(id) != null)
         {
@@ -60,7 +63,7 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
 
     @DELETE
     @Path("{id}")
-    public Response remove(@PathParam("id") Integer id)
+    public Response remove(@PathParam("id") Integer id, @HeaderParam("name") String name, @HeaderParam("pswd") String pswd)
     {
         if(super.find(id) != null)
         {
@@ -73,7 +76,7 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response find(@PathParam("id") Integer id)
+    public Response find(@PathParam("id") Integer id, @HeaderParam("name") String name, @HeaderParam("pswd") String pswd)
     {
         if(super.find(id) != null)
         {
@@ -87,8 +90,16 @@ public class CustomerFacadeREST extends AbstractFacade<Customer>
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response findAllCust()
     {
-        super.findAll();
-        return Response.status(Response.Status.NOT_FOUND).entity("No s'ha trobat cap client.").build();
+        List<Customer> cust = super.findAll();
+        if (cust != null)
+        {
+            GenericEntity<List<Customer>> ge = new GenericEntity<List<Customer>>(cust){};
+            return Response.ok(ge).build();
+        }
+        else
+        {
+            return Response.status(Response.Status.NOT_FOUND).entity("No s'ha trobat cap client.").build();
+        }
     }
     /*
     @GET

@@ -47,7 +47,7 @@ Author : marcbove
             <div class="card">
               <article class="card-body">
                 <h4 style="font-weight: 350; font-size: 2.5rem;" class="card-title mb-4 mt-1">Register</h4>
-                <form>
+                <form action="register.do">
                   <div class="form-group">
                     <label style="font-weight: 300; font-size: 1.5rem; width: 220px;">Username</label>
                     <input type="text" class="form-control" placeholder="Username" required autofocus>

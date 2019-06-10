@@ -2,7 +2,6 @@
 Created on : 30/05/2019
 Author : marcbove
 --%>
-<%@page import="entities.AvailableBooks"%>
 <%@page import="entities.Book"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,10 +15,10 @@ Author : marcbove
 <body>
   <%
     HttpSession sesion = request.getSession();
-    String user = (String) sesion.getAttribute("username");
+    String user = (String) sesion.getAttribute("name");
     Boolean sis = user == null;
     pageContext.setAttribute("sis", sis);
-    %>
+  %>
   <header>
     <%@include file="/navbar.jsp" %>
   </header>

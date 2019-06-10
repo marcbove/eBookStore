@@ -8,11 +8,7 @@ Author : marcbove
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <script src="js/bootstrap.min.js"></script>
-  <title>eBookStore</title>
+  <%@include file="/meta.jsp" %>
 </head>
 
 <body>
@@ -23,38 +19,7 @@ Author : marcbove
       pageContext.setAttribute("sis", sis);
   %>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/eBookStore" role="button">
-              Show All Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <form class="form-inline"></form>
-          </li>
-        </ul>
-        <ul class="navbar-nav lg-ml-5">
-          <li class="nav-item ml-auto"></li>
-        </ul>
-      </div>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item active">
-          <a href="login.jsp">Login</a>
-        </li>
-        &nbsp or &nbsp
-        <li class="nav-item active">
-          <a href="register.jsp">Register</a>
-        </li>
-        <c:if test="${!sis}">
-          <li class="nav-item active">
-            <a href="cart.jsp">${username}'s Shopping Cart</a>
-          </li>
-        </c:if>
-      </ul>
-    </nav>
+    <%@include file="/navbar.jsp" %>
   </header>
 
   <div class="container" style="width: 50%">
@@ -64,11 +29,11 @@ Author : marcbove
         <form class="form-signin" action="login.do" method="post">
           <div class="form-group">
             <label for="name" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Username</label>
-            <input type="text" class="form-control" placeholder="Username" required="required" autofocus="autofocus"></div>
+            <input name="name" type="text" class="form-control" placeholder="Username" required="required" autofocus="autofocus"></div>
           <!-- form-group// -->
           <div class="form-group">
             <label for="password" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Password</label>
-            <input type="password" class="form-control" placeholder="Password" required="required" autofocus="autofocus"></div>
+            <input name="pswd" type="password" class="form-control" placeholder="Password" required="required" autofocus="autofocus"></div>
           <!-- form-group// -->
           <div class="form-group">
             <div class="checkbox" style="">
@@ -90,23 +55,7 @@ Author : marcbove
     <!-- card.// -->
   </div>
   <footer class="footer font-small blue pt-4" style="margin-top: 10%; margin-left: 20%">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <h5>Information</h5>
-          <ul>
-            <li>Created by: Marc Bove & Oriol Balague</li>
-            <li>
-              <a href="https://github.com/marcbove/eBookStore">GitHub Project</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-9">
-          <ul class="footer-copyright text-center py-3">© 2019 Copyright
-          </ul>
-        </div>
-      </div>
-    </div>
+    <%@include file="/footer.jsp" %>
   </footer>
 </body>
 

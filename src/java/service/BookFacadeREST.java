@@ -46,7 +46,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     }
 
     @POST
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Book entity)
     {
         super.create(entity);
@@ -54,7 +54,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
 
     @PUT
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response edit(@PathParam("id") Integer id, Book entity)
     {
         if (super.find(id) == null)
@@ -79,7 +79,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response find(@PathParam("id") Integer id)
     {
         Book book = super.find(id);
@@ -91,7 +91,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     }
 
     @GET
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response findAll(@QueryParam("criterion") String criterion)
     {
         List<Book> bookList;
@@ -123,7 +123,7 @@ public class BookFacadeREST extends AbstractFacade<Book> {
     /*
     @GET
     @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Book> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }*/
