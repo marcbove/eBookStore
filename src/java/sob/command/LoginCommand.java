@@ -2,7 +2,6 @@ package sob.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.client.Client;
@@ -26,10 +25,7 @@ public class LoginCommand implements Command
    System.out.println(pswd);
    Client cust = ClientBuilder.newClient();
    List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});
-   for (Customer c: customers)
-   {
-     System.out.println(customers);
-   }   
+   
    customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
    boolean existeix = false;
    Customer login = null;
@@ -44,6 +40,7 @@ public class LoginCommand implements Command
           }
         }
     }
+   
    if(existeix)
    {
         HttpSession sesion = request.getSession(true);
@@ -52,6 +49,8 @@ public class LoginCommand implements Command
     }
     else
     {
+        Boolean error = !existeix;
+        request.setAttribute("error", error);
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
   }
