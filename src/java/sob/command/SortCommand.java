@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import entities.AvailableBooks;
 import entities.Book;
 import java.io.StringReader;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -24,13 +26,15 @@ public class SortCommand implements Command
         String sort = request.getParameter("sort");
 
         Client customer = ClientBuilder.newClient();
-        String list = customer.target("http://localhost:8080/eBookStore/rest/api/v1/books?criterion=" + sort).request().get(String.class);
-
-        AvailableBooks books = this.stringtoXML(list);
-
-        ServletContext context = request.getSession().getServletContext();
+        List<Book> books = customer.target("http://localhost:8080/eBookStore/rest/api/v1/books?criterion=" + sort).request().get(new GenericType<List<Book>>(){});
+        System.out.println(books);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAA");
+        for(Book b: books)
+        {
+            System.out.println(b);
+        }
         request.setAttribute("books", books);
-        context.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     private AvailableBooks stringtoXML(String str)

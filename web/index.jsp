@@ -79,11 +79,11 @@ Author : marcbove
             </form>
             <br>
               <div class="card">
-                <c:forEach var="book" items="${books.books}">
+                <c:forEach var="book" items="${books}">
                   <article class="itemlist">
                     <div class="row row-sm">
                       <aside class="col-sm-3">
-                        <div class="img-wrap"><a href=""><img src="${book.img}" class="img-md"></div></a>
+                        <div class="img-wrap"><</div>
                       </aside> <!-- col.// -->
                       <div class="col-sm-6">
                         <div class="text-wrap">
