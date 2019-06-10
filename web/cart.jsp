@@ -70,7 +70,7 @@ Author : marcbove
             <th scope="col">TOTAL</th>
             <th scope="col" width="120"></th>
             <th scope="col" width="130"><var class="price"> €</var></th>
-            </th>
+            </th> 
             <th scope="col" width="200" class="text-right"></th>
           </tr>
         </thead>
