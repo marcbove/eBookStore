@@ -25,29 +25,36 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-public class LoginCommand1 implements Command
+public class RegisterCommand implements Command
 {
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
   {
-    String username=request.getParameter("name");
-    String password=request.getParameter("pswd");
+    String name=request.getParameter("name");
+    String pswd=request.getParameter("pswd");
+    //String email=request.getParameter("email");
+    //String phone= request.getParameter("phone");
     Customer customer=new Customer();
-    customer.setPswd(password);
-    customer.setName(username);
-    //HttpSession sesion = request.getSession();
-    //sesion.setAttribute("username", username);
-    //ServletContext context = request.getSession().getServletContext();
-    //context.getRequestDispatcher("/index.jsp").forward(request, response);
-   
-    List<Customer> customers = customer.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});  
-    List<Customer> custom= list.getCustomers().stream().filter(c->c.getUser().equals(username)).collect(Collectors.toList());
+    customer.setPswd(pswd);
+    customer.setName(name);
+   // customer.setEmail(email);
+    //customer.setPhone(phone);
+    Client cust = ClientBuilder.newClient();
+    List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});  
+    customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
     boolean registrat = true;
      
-    if(custom.isEmpty()){
+    if(customers.isEmpty()){
        registrat=false;
     }
-  
+   if(!registrat){
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("name", name);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+        }
+        else{
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
+        }   
   
   }  
 }

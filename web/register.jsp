@@ -4,6 +4,7 @@ Author : marcbove
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="entities.Customer"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,7 +39,7 @@ Author : marcbove
                 <li class="nav-item active"><a href="login.jsp">Login</a></li>
                 &nbsp or &nbsp
                 <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
+                <li class="nav-item active"><a href="cart.jsp">${name}'s Shopping Cart</a></li>
               </ul>
             </nav>
           </header>
@@ -47,9 +48,9 @@ Author : marcbove
             <div class="card">
               <article class="card-body">
                 <h4 style="font-weight: 350; font-size: 2.5rem;" class="card-title mb-4 mt-1">Register</h4>
-                <form>
+                <form action="register.do" method="post">
                   <div class="form-group">
-                    <label style="font-weight: 300; font-size: 1.5rem; width: 220px;">Username</label>
+                    <label for="name" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Username</label>
                     <input type="text" class="form-control" placeholder="Username" required autofocus>
                     </div> <!-- form-group// -->
                     <div class="form-group">
@@ -61,7 +62,7 @@ Author : marcbove
                         <input type="text" class="form-control" placeholder="Phone Number" required autofocus>
                         </div> <!-- form-group// -->
                         <div class="form-group">
-                          <label style="font-weight: 300; font-size: 1.5rem; width: 220px;">Password</label>
+                          <label for="pswd" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Password</label>
                           <input type="password" class="form-control" placeholder="********" required autofocus>
                           </div> <!-- form-group// -->
                           <div class="form-group">

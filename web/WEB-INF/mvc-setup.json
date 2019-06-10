@@ -21,8 +21,8 @@
       "URI": "/login",
       "class": "sob.command.LoginCommand"
     },{
-      "URI": "/login1",
-      "class": "sob.command.LoginCommand1"
+      "URI": "/register",
+      "class": "sob.command.RegisterCommand"
     }
   ]
 }

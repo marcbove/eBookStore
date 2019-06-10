@@ -16,12 +16,6 @@ Author : marcbove
 </head>
 
 <body>
-  <%
-      HttpSession sesion = request.getSession();
-      String user = (String) sesion.getAttribute("name");
-      Boolean sis = (user == null);
-      pageContext.setAttribute("sis", sis);
-  %>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="navbar-collapse">
@@ -48,12 +42,7 @@ Author : marcbove
         <li class="nav-item active">
           <a href="register.jsp">Register</a>
         </li>
-        <c:if test="${!sis}">
-          <li class="nav-item active">
-            <a href="cart.jsp">${username}'s Shopping Cart</a>
-          </li>
-        </c:if>
-      </ul>
+       </ul>
     </nav>
   </header>
 
@@ -61,13 +50,13 @@ Author : marcbove
     <div class="card">
       <article class="card-body">
         <h4 style="font-weight: 350; font-size: 2.5rem;" class="card-title mb-4 mt-1">Login</h4>
-        <form class="form-signin" action="login1.do" method="post">
+        <form class="form-signin" action="login.do" method="post">
           <div class="form-group">
-            <label for="name" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Username</label>
+            <label name="name" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Username</label>
             <input type="text" class="form-control" placeholder="Username" required="required" autofocus="autofocus"></div>
           <!-- form-group// -->
           <div class="form-group">
-            <label for="password" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Password</label>
+            <label name="pswd" style="font-weight: 300; font-size: 1.5rem; width: 220px;">Password</label>
             <input type="password" class="form-control" placeholder="Password" required="required" autofocus="autofocus"></div>
           <!-- form-group// -->
           <div class="form-group">

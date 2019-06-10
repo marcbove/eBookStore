@@ -51,8 +51,7 @@ public class Customer implements Serializable
         this.customerId = customerId;
         this.orders = new LinkedList<BookOrder>();
     }
-
-        public Integer getCustomerId()
+         public Integer getCustomerId()
     {
         return customerId;
     }

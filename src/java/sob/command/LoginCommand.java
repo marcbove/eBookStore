@@ -31,7 +31,32 @@ public class LoginCommand implements Command
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
   {
-   
-     request.getRequestDispatcher("/login.jsp").forward(request, response); 
+   String name=request.getParameter("name");
+   String pswd=request.getParameter("pswd");
+   Client cust = ClientBuilder.newClient();
+   List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});  
+   customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
+   boolean existeix = false;
+   Customer login = null;
+    if(!customers.isEmpty()){
+        for (Customer actual: customers){
+          if(actual.getPswd().equals(pswd)){
+             login = actual;
+             existeix=true;
+          }
+        }
+    }
+   if(existeix){
+            HttpSession sesion = request.getSession(true);
+            sesion.setAttribute("name", login);
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/index.jsp").forward(request, response);
+           
+            
+        }
+        else{
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/register.jsp").forward(request, response);
+        }   
   }  
 }
