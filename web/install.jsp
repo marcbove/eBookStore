@@ -78,9 +78,9 @@ private List<String> resetDatabase(boolean force) throws Exception {
         String data[] = new String[]{
             "INSERT INTO " + dbname + ".CUSTOMER(PHONE, EMAIL, NAME, PSWD) VALUES ('123456789', 'sob@sob.com', 'sob', 'sob')",
 
-            "INSERT INTO " + dbname + ".BOOK(RATING, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (5, 'This is a description', 10.0, 'Watchmen', 'Alan Moore, Dave Gibbons', 50)",
-            "INSERT INTO " + dbname + ".BOOK(RATING, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (4, 'This is a description', 25.0, 'Sherlock Holmes Complete', 'Arthur Conan Doyle', 38)",
-            "INSERT INTO " + dbname + ".BOOK(RATING, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (3, 'This is a description', 30.0, 'A Song of Fire and Ice', 'George R.R. Martin', 75)"
+            "INSERT INTO " + dbname + ".BOOK(RATING, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (5, 'This is a description', 9.95, 'Watchmen', 'Alan Moore, Dave Gibbons', 50)",
+            "INSERT INTO " + dbname + ".BOOK(RATING, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (4, 'This is a description', 24.95, 'Sherlock Holmes Complete', 'Arthur Conan Doyle', 38)",
+            "INSERT INTO " + dbname + ".BOOK(RATING, DESCRIPTION, PRICE, NAME, AUTHOR, STOCK) VALUES (3, 'This is a description', 39.95, 'A Song of Fire and Ice', 'George R.R. Martin', 75)"
         };
 
         for (String datum : data) {

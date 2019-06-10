@@ -125,13 +125,13 @@ public class Book implements Serializable
     {
         this.description = description;
     }
-
-    /*public String getCover()
+/*
+    public String getCover()
     {
         return cover;
-    }*/
+    }
 
-    /*public void setCover(String cover)
+    public void setCover(String cover)
     {
         this.cover = cover;
     }*/

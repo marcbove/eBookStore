@@ -8,125 +8,134 @@ Author : marcbove
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <title>eBookStore</title>
-  </head>
-        <body>
-          <%
-          HttpSession sesion = request.getSession();
-          String user = (String) sesion.getAttribute("username");
-          Boolean sis = user == null;
-          pageContext.setAttribute("sis", sis);
-          %>
-          <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <div class="navbar-collapse">
-                <form action="criterion.do">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                      <a class="nav-link" href="/eBookStore/rest/api/v1/books?criterion=rating" role="button">
-                        Show All Products
-                      </a>
-                    </li>
-                  </ul>
-                </form>
-                <ul class="navbar-nav lg-ml-5">
-                  <li class="nav-item ml-auto">
-                  </li>
-                </ul>
+
+<head>
+  <%@include file="/meta.jsp" %>
+</head>
+
+<body>
+  <%
+    HttpSession sesion = request.getSession();
+    String user = (String) sesion.getAttribute("username");
+    Boolean sis = user == null;
+    pageContext.setAttribute("sis", sis);
+    %>
+  <header>
+    <%@include file="/navbar.jsp" %>
+  </header>
+  <div class="container" style="margin-top: 2%">
+    <center>
+      <h1>eBookStore</h1>
+    </center>
+    <form action="criterion.do">
+      <div class="row">
+        &nbsp&nbsp&nbsp
+        <div class="column">
+          <select class="form-control" name="sort">
+            <option value="price">Price</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+        <div class="column input-group-btn">
+          &nbsp
+          <button type="submit" class="btn btn-primary">Sort</button>
+        </div>
+      </div>
+    </form>
+    <br>
+    <div class="card">
+      <c:forEach var="book" items="${books}">
+        <article class="itemlist">
+          <div class="row row-sm">
+            <aside class="col-sm-3">
+              <div class="img-wrap">
+                <a href="">
+                  <img src="" class="img-md"></div>
+              </a>
+            </aside>
+            <!-- col.// -->
+            <div class="col-sm-6">
+              <div class="text-wrap">
+                <h3>
+                  ${book.name}
+                </h3>
+                <p>
+                  ${book.description}
+                </p>
+                <p class="rating-wrap my-0 text-warning">
+                  <c:if test="${book.rating == 0}">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </c:if>
+                  <c:if test="${book.rating == 1}">
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </c:if>
+                  <c:if test="${book.rating == 2}">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </c:if>
+                  <c:if test="${book.rating == 3}">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </c:if>
+                  <c:if test="${book.rating == 4}">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </c:if>
+                  <c:if test="${book.rating == 5}">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </c:if>
+                </p>
+                <!-- rating-wrap.// -->
               </div>
-              <!--
-              <c:if test = "${sis}">
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="nav-item active"><a href="login.jsp">Login</a></li>
-                  &nbsp or &nbsp
-                  <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                </ul>
-              </c:if>
-              <c:if test = "${!sis}">
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
-                </ul>
-              </c:if>
-            -->
-                <ul class="nav navbar-nav navbar-right">
-                  <li class="nav-item active"><a href="login.jsp">Login</a></li>
-                  &nbsp or &nbsp
-                  <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                  <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
-                </ul>
-            </nav>
-          </header>
-          <div class="container" style="margin-top: 2%">
-            <center><h1>eBookStore</h1></center>
-            <form action="criterion.do">
-              <div class="row">
-                <div class="column">
-                  <select class="form-control" name="sort">
-                    <option value="price">Price</option>
-                    <option value="rating">Rating</option>
-                  </select>
+              <!-- text-wrap.// -->
+            </div>
+            <!-- col.// -->
+            <aside class="col-sm-3">
+              <div class="border-left pl-3">
+                <div class="price-wrap">
+                  <span class="h3 price">
+                    ${book.price} €</span>
                 </div>
-                <div class="column input-group-btn">
-                  <button type="submit" class="btn btn-default">Sort</button>
-                </div>
+                <!-- info-price-detail // -->
+                <p class="text-success">Free shipping</p>
+                <p>
+                  <a href="books.do?id=${book.bookId}" class="btn btn-warning">Detail</a>
+                </p>
               </div>
-            </form>
-            <br>
-              <div class="card">
-                <c:forEach var="book" items="${books}">
-                  <article class="itemlist">
-                    <div class="row row-sm">
-                      <aside class="col-sm-3">
-                        <div class="img-wrap"><</div>
-                      </aside> <!-- col.// -->
-                      <div class="col-sm-6">
-                        <div class="text-wrap">
-                          <h3> ${book.title} </h3>
-                          <p> ${book.description} </p>
-                          <p class="rating-wrap my-0 text-muted">
-                            <span class="label-rating">0 reviews</span>
-                            <span class="label-rating">0 orders </span>
-                          </p> <!-- rating-wrap.// -->
-                        </div> <!-- text-wrap.// -->
-                      </div> <!-- col.// -->
-                      <aside class="col-sm-3">
-                        <div class="border-left pl-3">
-                          <div class="price-wrap">
-                            <span class="h3 price"> ${book.price} €</span>
-                          </div> <!-- info-price-detail // -->
-                          <p class="text-success">Free shipping</p>
-                          <p>
-                            <a></a>
-                            <a href="" class="btn btn-light">Details</a>
-                          </p>
-                        </div> <!-- action-wrap.// -->
-                      </aside> <!-- col.// -->
-                    </div> <!-- row.// -->
-                  </article> <!-- itemlist.// -->
-                </c:forEach>
-              </div> <!-- card.// -->
-              <footer class="footer font-small blue pt-4" style="margin-top: 10%; margin-left: 20%">
-                <div class="container" >
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5>Information</h5>
-                      <ul>
-                        <li>Created by: Marc Bové & Oriol Balagué</li>
-                        <li><a href="https://github.com/marcbove/eBookStore">GitHub Project</a></li>
-                        <li><a href="install.jsp">Drop & Create DataBase</a></li>
-                      </ul>
-                    </div>
-                    <div class="col-md-9">
-                      <ul class="footer-copyright text-center py-3">© 2019 Copyright </ul>
-                    </div>
-                  </div>
-                </div>
-              </footer>
-            </body>
-          </html>
+              <!-- action-wrap.// -->
+            </aside>
+            <!-- col.// -->
+          </div>
+          <!-- row.// -->
+        </article>
+        <!-- itemlist.// -->
+      </c:forEach>
+    </div>
+    <!-- card.// -->
+    <footer class="footer font-small blue pt-4" style="margin-top: 10%; margin-left: 20%">
+      <%@include file="/footer.jsp" %>
+    </footer>
+</body>
+
+</html>

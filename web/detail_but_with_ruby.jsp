@@ -15,31 +15,7 @@ Author : marcbove
         </head>
         <body>
           <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <div class="navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/eBookStore" role="button">
-                      Show All Products
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <form class="form-inline">
-                    </form>
-                  </li>
-                </ul>
-                <ul class="navbar-nav lg-ml-5">
-                  <li class="nav-item ml-auto">
-                  </li>
-                </ul>
-              </div>
-              <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item active"><a href="login.jsp">Login</a></li>
-                &nbsp or &nbsp
-                <li class="nav-item active"><a href="register.jsp">Register</a></li>
-                <li class="nav-item active"><a href="cart.jsp">${username}'s Shopping Cart</a></li>
-              </ul>
-            </nav>
+
           </header>
 
           <div class="card">
@@ -115,20 +91,7 @@ Author : marcbove
             </div> <!-- card.// -->
 
             <footer class="footer font-small blue pt-4" style="margin-top: 10%; margin-left: 20%">
-              <div class="container" >
-                <div class="row">
-                  <div class="col-md-8">
-                    <h5>Information</h5>
-                    <ul>
-                      <li>Created by: Marc Bové & Oriol Balagué</li>
-                      <li><a href="https://github.com/marcbove/eBookStore">GitHub Project</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-9">
-                    <ul class="footer-copyright text-center py-3">© 2019 Copyright </ul>
-                  </div>
-                </div>
-              </div>
+
             </footer>
           </body>
         </html>

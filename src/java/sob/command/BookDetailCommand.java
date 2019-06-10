@@ -10,6 +10,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import entities.Book;
+import javax.ws.rs.core.GenericType;
 
 public class BookDetailCommand implements Command {
 
@@ -20,11 +21,9 @@ public class BookDetailCommand implements Command {
 
         //Client customer = ClientBuilder.newClient();
         javax.ws.rs.client.Client client = ClientBuilder.newClient();
-        Response resp = client.target("http://localhost:8080/eBookStore/rest/api/v1/books/" + id).request(MediaType.APPLICATION_JSON).get(Response.class);
-        Book b = resp.readEntity(Book.class);
+        Book b = client.target("http://localhost:8080/eBookStore/rest/api/v1/books/" + id).request().get(new GenericType<Book>(){});
 
         request.setAttribute("book", b);
-        ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/detail.jsp").forward(request, response);
+        request.getRequestDispatcher("/detail.jsp").forward(request, response);
     }
 }

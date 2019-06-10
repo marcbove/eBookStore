@@ -2,14 +2,6 @@
   "commands":
   [
     {
-      "URI": "/init",
-      "class": "sob.command.InitCommand"
-    },
-    {
-      "URI": "/write",
-      "class": "sob.command.WriteCommand"
-    },
-    {
       "URI": "/criterion",
       "class": "sob.command.SortCommand"
     },
