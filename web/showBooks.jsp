@@ -131,6 +131,9 @@ Author : marcbove
         <!-- itemlist.// -->
         <hr>
       </c:forEach>
+     <form action="logout.do" method="post">
+		<input type="submit" value="Logout">
+    </form>
     </div>
     <!-- card.// -->
     <footer class="footer font-small blue pt-4" style="margin-top: 10%; margin-left: 20%">
