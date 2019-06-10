@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -32,16 +33,18 @@ public class RegisterCommand implements Command
   {
     String name=request.getParameter("name");
     String pswd=request.getParameter("pswd");
-    //String email=request.getParameter("email");
-    //String phone= request.getParameter("phone");
+    String email=request.getParameter("email");
+    String phone= request.getParameter("phone");
     Customer customer=new Customer();
-    customer.setPswd(pswd);
-    customer.setName(name);
-   // customer.setEmail(email);
-    //customer.setPhone(phone);
+       customer.setPswd(pswd);
+       customer.setName(name);
+       customer.setEmail(email);
+       customer.setPhone(phone);
+       
     Client cust = ClientBuilder.newClient();
     List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});  
     customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
+<<<<<<< Updated upstream
     boolean registrat = true;
      
     if(customers.isEmpty()){
@@ -57,4 +60,20 @@ public class RegisterCommand implements Command
         }   
   
   }  
+=======
+    
+  if(!customers.isEmpty()){
+     Boolean error = false;
+     request.setAttribute("error", error);
+      request.getRequestDispatcher("/register.jsp").forward(request, response);
+   }else{
+       HttpSession sesion = request.getSession(true);
+       sesion.setAttribute("name", customer.getName());
+       Response response1 = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().post(Entity.json(customer));
+       request.getRequestDispatcher("/login.jsp").forward(request, response);          
+    }
+                   
+                
+  }
+>>>>>>> Stashed changes
 }

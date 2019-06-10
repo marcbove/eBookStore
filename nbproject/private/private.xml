@@ -3,8 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/src/java/sob/command/RegisterCommand.java</file>
             <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/src/java/sob/command/LoginCommand.java</file>
+=======
+            <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/web/login.jsp</file>
+            <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/src/java/sob/command/RegisterCommand.java</file>
+            <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/src/java/sob/ControllerServlet.java</file>
+            <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/src/java/service/CustomerFacadeREST.java</file>
+            <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/web/register.jsp</file>
+            <file>file:/C:/Users/ningu/Documents/NetBeansProjects/eBookStore/src/java/service/AbstractFacade.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

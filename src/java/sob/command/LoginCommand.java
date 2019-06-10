@@ -31,8 +31,13 @@ public class LoginCommand implements Command
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
   {
+<<<<<<< Updated upstream
    String name=request.getParameter("name");
    String pswd=request.getParameter("pswd");
+=======
+   String name = request.getParameter("name");
+   String pswd = request.getParameter("pswd");
+>>>>>>> Stashed changes
    Client cust = ClientBuilder.newClient();
    List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});  
    customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
