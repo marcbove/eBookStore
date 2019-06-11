@@ -108,26 +108,58 @@ private List<String> resetDatabase(boolean force) throws Exception {
 %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Force database installation</title>
-    </head>
-    <style>
-        .error {
-            color: red;
-        }
-        pre {
-            color: green;
-        }
-    </style>
-    <body>
-        <h2>Database initialization in progress</h2>
-<%
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <title>Force database installation</title>
+</head>
+<style>
+  h2 {
+    padding: 5px;
+    text-align: center;
+    background: #008CBA;
+    color: white;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .error {
+    color: red;
+  }
+  pre {
+    color: #008CBA;
+  }
+  button {
+    background-color: #4CAF50; /* Green */
+border: none;
+color: white;
+padding: 6px 12px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+-webkit-transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+cursor: pointer;
+background-color: white;
+color: black;
+border: 2px solid #008CBA;
+      }
+  button:hover {
+      background-color: #008CBA;
+      color: white;
+  }
+</style>
+<body>
+  <h2>Database initialization in progress</h2>
+    <%
     List<String> messages = resetDatabase(true);
     for (String message : messages) {
         out.println(message);
     }
-%>
-        <button onclick="window.location='<%=request.getSession().getServletContext().getContextPath()%>'">Go home</button>
-    </body>
+    %>
+  <center>
+    <button onclick="window.location='<%=request.getSession().getServletContext().getContextPath()%>'">Go home</button>
+  </center>
+</body>
 </html>

@@ -16,6 +16,10 @@
       "class": "sob.command.RegisterCommand"
     },
     {
+      "URI": "/logout",
+      "class": "sob.command.LogOutCommand"
+    },
+    {
       "URI": "/cart",
       "class": "sob.command.CartCommand"
     }

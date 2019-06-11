@@ -26,8 +26,10 @@
   </c:if>
   <c:if test = "${!sis}">
     <ul class="nav navbar-nav navbar-right">
-      <li>&nbsp&nbsp&nbsp Welcome ${name}! &nbsp&nbsp&nbsp</li>
-      <li class="nav-item active"><a href="cart.jsp">Show Shopping Cart</a></li>
+      <li class="mx-2 nav-item">Welcome ${name}!</li>
+      <li class="mx-2 nav-item active"><a href="cart.jsp">Show Shopping Cart</a></li>
+      <li class="mx-2 nav-item active"><a href="logout.do" class="text-danger">Logout</a></li>
+      <!--li class="nav-item active"><form action="logout.do" method="post"><button class="text-danger" type="submit" value="Logout"></form-->
     </ul>
   </c:if>
 
