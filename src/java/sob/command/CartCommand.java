@@ -34,11 +34,7 @@ public class CartCommand implements Command
                 }
             }
             List<Book> cart = actual.cart;
-            System.out.println("ORDER: ");
-            System.out.println(cart);
             cart.add(book);
-            System.out.println("ORDER: ");
-            System.out.println(cart);
             sesion.setAttribute("cart", cart);
             request.getRequestDispatcher("/cart.jsp").forward(request, response);
         }

@@ -40,7 +40,7 @@ Author : marcbove
 
               <td>
                 <figure class="media">
-                  <div class="img-wrap"><img style="max-width:25%; max-height:25%;" src="${book.cover}" class="img-thumbnail img-sm"></div>
+                  <div class="img-wrap"><img style="max-width:75%; max-height:75%;" src="${book.halfcover}" class="img-thumbnail img-sm"></div>
                   <figcaption class="media-body">
                     <h6 class="title text-truncate">${book.name}</h6>
                     <dl class="dlist-inline small">

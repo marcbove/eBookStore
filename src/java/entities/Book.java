@@ -44,6 +44,8 @@ public class Book implements Serializable
     private String description;
     @Column(name = "COVER")
     private String cover;
+    @Column(name = "HALFCOVER")
+    private String halfcover;
     /*
     @ElementCollection
     @CollectionTable
@@ -134,6 +136,16 @@ public class Book implements Serializable
     public void setCover(String cover)
     {
         this.cover = cover;
+    }
+
+    public String getHalfcover()
+    {
+        return halfcover;
+    }
+
+    public void setHalfcover(String halfcover)
+    {
+        this.halfcover = halfcover;
     }
 
     public String getAuthor()
