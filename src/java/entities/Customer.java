@@ -1,7 +1,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,17 +42,28 @@ public class Customer implements Serializable
     private String email;
     @Column(name = "PSWD")
     private String pswd;
+    public static List<Book> cart = new ArrayList<>();
 
     public Customer()
     {
-        this.orders = new LinkedList<BookOrder>();
+        this.orders = new LinkedList<>();
     }
 
     public Customer(Integer customerId)
     {
         this.customerId = customerId;
-        this.orders = new LinkedList<BookOrder>();
+        this.orders = new LinkedList<>();
     }
+/*
+    public List<Book> getCart()
+    {
+        return cart;
+    }
+
+    public void setCart(List<Book> cart)
+    {
+        this.cart = cart;
+    }*/
 
     public Integer getCustomerId()
     {

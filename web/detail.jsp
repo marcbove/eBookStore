@@ -17,7 +17,7 @@ Author : marcbove
         Book book = (Book) request.getAttribute("book");
         pageContext.setAttribute("book", book);
         HttpSession sesion = request.getSession();
-        String user = (String) sesion.getAttribute("username");
+        String user = (String) sesion.getAttribute("name");
         Boolean sis = user == null;
         pageContext.setAttribute("sis", sis);
       %>
@@ -112,12 +112,17 @@ Author : marcbove
                   <dt>Quantity: </dt>
                   <dd>
                     <select class="form-control form-control-sm" style="width:70px;">
-                      <option> 1 </option><option> 2 </option><option> 3 </option>
-                      <option> 4 </option><option> 5 </option><option> 6 </option>
-                      <option> 7 </option><option> 8 </option>
+                      <option>1</option><option>2</option><option>3</option>
+                      <option>4</option><option>5</option><option>6</option>
+                      <option>7</option><option>8</option>
                     </select>
                   </dd>
-                  <a href="#" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                  <c:if test = "${sis}">
+                    <a href="login.jsp" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                  </c:if>
+                  <c:if test = "${!sis}">
+                    <a href="cart.do?bookId=${book.bookId}" class="btn  btn-outline-primary"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                  </c:if>
                 </dl> <!-- item-property .// -->
               </div> <!-- col.// -->
             </div> <!-- row.// -->

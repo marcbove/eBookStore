@@ -3,12 +3,8 @@ package sob.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
 import java.io.IOException;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import entities.Book;
 import javax.ws.rs.core.GenericType;
 

@@ -2,11 +2,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="navbar-collapse">
     <form action="criterion.do">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto navbar-left">
         <li class="nav-item">
-          <a class="nav-link" href="/eBookStore" role="button">
-            Home
-          </a>
+          <a class="nav-link" href="/eBookStore" role="button">&nbspHome&nbsp</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="criterion.do" role="button">&nbspView Books&nbsp</a>
         </li>
       </ul>
     </form>
