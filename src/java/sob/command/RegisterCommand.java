@@ -10,7 +10,9 @@ import entities.Customer;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 public class RegisterCommand implements Command
 {
@@ -27,21 +29,23 @@ public class RegisterCommand implements Command
    // customer.setEmail(email);
     //customer.setPhone(phone);
     Client cust = ClientBuilder.newClient();
-    List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});
-    customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
-    boolean registrat = true;
+   // List<Customer> customers = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().get(new GenericType<List<Customer>>(){});
+    //customers.stream().filter(c->c.getName().equals(name)).collect(Collectors.toList());
+    //boolean registrat = true;
 
-    if(customers.isEmpty()){
-       registrat=false;
-    }
-   if(!registrat){
+    //if(customers.isEmpty()){
+      // registrat=false;
+    //}
+   //if(!registrat){           
             HttpSession sesion = request.getSession();
+            Response postResponse = cust.target("http://localhost:8080/eBookStore/rest/api/v1/customers").request().post(Entity.xml(customer));
             sesion.setAttribute("name", name);
-            request.getRequestDispatcher("/showBooks.jsp").forward(request, response);
-        }
-        else{
-            request.getRequestDispatcher("/register.jsp").forward(request, response);
-        }
+            request.getRequestDispatcher("/criterion.do").forward(request, response);
+
+        //}
+        //else{
+          //  request.getRequestDispatcher("/register.jsp").forward(request, response);
+        //}
 
   }
 }
